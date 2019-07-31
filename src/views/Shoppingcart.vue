@@ -34,7 +34,14 @@
                 color="grey lighten-1"
                 height="450px"
               >
-                <v-simple-table fixed-header height="450px">
+                <v-card v-if="$store.state.shoppingCart.length < 1" height="450px">
+                  <v-card-text class="px-0">
+                    <v-layout justify-center>
+                      <v-subheader style="font-size:20px;">Nothing in cart!</v-subheader>
+                    </v-layout>
+                  </v-card-text>
+                </v-card>
+                <v-simple-table v-else fixed-header height="450px">
                   <thead>
                     <tr>
                       <th class="text-center">Product</th>
@@ -70,32 +77,32 @@
                               <div
                                 class="overline"
                                 style="font-size:20px!important;margin-top:40px"
-                              >name</div>
-                              <v-list-item-title class="overline mb-1 mt-5">Desc</v-list-item-title>
+                              >{{ shoppingProductGet(product.productId).title }}</div>
+                              <v-list-item-title class="overline mb-1 mt-5">{{ shoppingProductGet(product.productId).desc }}</v-list-item-title>
 
-                              <v-list-item-title class="overline mb-1">Shoe size 41</v-list-item-title>
+                              <v-list-item-title class="overline mb-1">{{product.size}}</v-list-item-title>
                             </v-card>
                           </v-flex>
                         </v-layout>
                       </td>
-                      <td class="text-center">RM {{ product.price }}</td>
+                      <td class="text-center">RM {{ shoppingProductGet(product.productId).price }}</td>
                       <td class="text-center">
                         <v-layout justify-center>
                           <v-flex>
-                            <v-btn @click="decrement" small icon>
+                            <v-btn @click="decrement(product)" small icon>
                               <v-icon>mdi-minus</v-icon>
                             </v-btn>
-                            <span class="ma-2" v-text="qty"></span>
-                            <v-btn @click="increment" small icon>
+                            <span class="ma-2" v-text="product.quantity"></span>
+                            <v-btn @click="increment(product)" small icon>
                               <v-icon>mdi-plus</v-icon>
                             </v-btn>
                           </v-flex>
                         </v-layout>
                       </td>
-                      <td class="text-center">RM {{ product.price }}</td>
+                      <td class="text-center">RM {{ shoppingProductGet(product.productId).price * product.quantity}}</td>
 
                       <td class="text-center">
-                        <v-btn @click="decrement" small icon>
+                        <v-btn @click="removeFromCart(product.id)" small icon>
                           <v-icon>clear</v-icon>
                         </v-btn>
                       </td>
@@ -119,13 +126,13 @@
                     <v-flex xs2>
                       <v-subheader style="margin-left:20px">
                         Subtotal
-                        <span style="margin-left:30px;margin-right:10px">RM 123</span>
+                        <span style="margin-left:30px;margin-right:10px">RM {{ subtotal }}</span>
                       </v-subheader>
                     </v-flex>
                     <v-flex xs2>
                       <v-subheader>
                         Grand Total
-                        <span style="margin-left:30px;margin-right:10px">RM 456</span>
+                        <span style="margin-left:30px;margin-right:10px">RM {{ grandtotal}}</span>
                       </v-subheader>
                     </v-flex>
                   </v-layout>
@@ -158,6 +165,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
     data: {
   	paypal: {
@@ -165,60 +173,55 @@ export default {
       production: 'AVZhosFzrnZ5Mf3tiOxAD0M6NHv8pcB2IFNHAfp_h69mmbd-LElFYkJUSII3Y0FPbm7S7lxBuqWImLbl'
     }
   },
+
+  mounted() {
+    this.$store.state.shoppingCart.forEach(el => {
+        this.subtotal += (this.shoppingProductGet(el.productId).price * el.quantity)
+        this.grandtotal = this.subtotal
+        })
+  },
+
+  computed: {
+    ...mapGetters([
+      'shoppingProductGet'
+    ])
+  },
+
   data() {
     return {
       e1: 0,
-      desserts: [
-        {
-          name: "Frozen Yogurt",
-          calories: 159
-        },
-        {
-          name: "Ice cream sandwich",
-          calories: 237
-        },
-        {
-          name: "Eclair",
-          calories: 262
-        },
-        {
-          name: "Cupcake",
-          calories: 305
-        },
-        {
-          name: "Gingerbread",
-          calories: 356
-        },
-        {
-          name: "Jelly bean",
-          calories: 375
-        },
-        {
-          name: "Lollipop",
-          calories: 392
-        },
-        {
-          name: "Honeycomb",
-          calories: 408
-        },
-        {
-          name: "Donut",
-          calories: 452
-        },
-        {
-          name: "KitKat",
-          calories: 518
-        }
-      ],
-      qty: 1
+      subtotal: 0,
+      grandtotal: 0
     };
   },
   methods: {
-    decrement() {
-      this.qty--;
+    decrement(product) {
+      if(product.quantity>1){
+        let data = {
+          id: product.id,
+          quantity: product.quantity--
+        }
+        this.resubtotal()
+        this.$store.commit('cartQuantity', data);
+      }
     },
-    increment() {
-      this.qty++;
+    increment(product) {
+      let data = {
+        id: product.id,
+        quantity: product.quantity++
+      }
+      this.resubtotal()
+      this.$store.commit('cartQuantity', data);
+    },
+    removeFromCart (id) {
+      this.$store.commit('removeFromCart', id);
+    },
+    resubtotal(){
+      this.subtotal = 0
+      this.$store.state.shoppingCart.forEach(el => {
+        this.subtotal += (this.shoppingProductGet(el.productId).price * el.quantity)
+        this.grandtotal = this.subtotal
+        })
     }
   }
 };

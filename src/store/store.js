@@ -14,6 +14,7 @@ const state = {
         title: "Entrudo",
         desc: "Camel Sandals Chama",
         price: 22,
+        size: 0,
         isNewArrival: true,
         isAddedToCart: false,
         isAddedBtn: false,
@@ -26,6 +27,7 @@ const state = {
         title: "Entrudo",
         desc: "Camel Toes",
         price: 232,
+        size: 0,
         isNewArrival: false,
         isAddedToCart: false,
         isAddedBtn: false,
@@ -38,6 +40,7 @@ const state = {
         title: "Entrudo",
         desc: "Camel Sandals Chama",
         price: 22,
+        size: 0,
         isNewArrival: false,
         isAddedToCart: false,
         isAddedBtn: false,
@@ -50,6 +53,7 @@ const state = {
         title: "Entrudo",
         desc: "Camel Sandals Chama",
         price: 22,
+        size: 0,
         isNewArrival: true,
         isAddedToCart: false,
         isAddedBtn: false,
@@ -62,6 +66,7 @@ const state = {
         title: "Entrudo",
         desc: "Camel Sandals Chama",
         price: 22,
+        size: 0,
         isNewArrival: false,
         isAddedToCart: false,
         isAddedBtn: false,
@@ -74,6 +79,7 @@ const state = {
         title: "Entrudo",
         desc: "Camel Sandals Chama",
         price: 22,
+        size: 0,
         isNewArrival: true,
         isAddedToCart: false,
         isAddedBtn: false,
@@ -86,30 +92,49 @@ const state = {
         title: "Entrudo",
         desc: "Camel Sandals Chama",
         price: 22,
+        size: 0,
         isNewArrival: true,
         isAddedToCart: false,
         isAddedBtn: false,
         quantity: 1
     }
     ],
-    shoppingCart: [{}],
+    shoppingCart: [],
   }
 
 const getters = {
     evenOrOdd: state => state.count % 2 === 0 ? 'even' : 'odd',
     productsAdded: state => {
-      return state.shoppingCart.count
+      return state.shoppingCart.length
     },
+    shoppingProductGet : state => pid => {
+        var selected
+        state.products.forEach(el => {
+            if(pid === el.id) {
+                selected = el
+            }
+        })
+        return selected
+    }
   }
 
 const mutations = {
     addToCart: (state, {id, quantity, size}) => {
-        var obj = {}
-        obj["id"] = uuid.v1()
-        obj["productId"] = id
-        obj["quantity"] = quantity
-        obj["size"] = size
-        state.shoppingCart.push(obj)
+        var cont = true
+        state.shoppingCart.forEach(el => {
+            if (el.productId === id && el.size === size){
+                el.quantity += quantity
+                cont = false
+            }
+        })
+        if (cont === true){
+            var obj = {}
+            obj["id"] = uuid.v1()
+            obj["productId"] = id
+            obj["quantity"] = quantity
+            obj["size"] = size
+            state.shoppingCart.push(obj)
+        }
         },
     setAddedBtn: (state, data) => {
         state.products.forEach(el => {
@@ -123,6 +148,20 @@ const mutations = {
             return value["id"] != id
         })
         state.shoppingCart = filtered
+    },
+    cartQuantity: (state, data) => {
+      state.shoppingCart.forEach(el => {
+        if (data.id === el.productId) {
+          el.quantity = data.quantity;
+        }
+      });
+    },
+    cartProductSize: (state, data) => {
+        state.shoppingCart.forEach(el => {
+            if (data.id === el.productId) {
+            el.size = data.size;
+            }
+        });
     }
 }
 

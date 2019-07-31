@@ -53,9 +53,13 @@
             <span>RM {{product.price}}</span>
             <br />
             <br />
-            <v-btn-toggle  multiple>
-              <v-btn v-for="i in 7" :key="i">{{i+38}}</v-btn>
+            <v-btn-toggle mandatory>
+              <v-btn v-for="i in 7" :key="i" v-on:click.native="sendSize(product.id, i+38)" :value="i+38" >{{i+38}}</v-btn>
             </v-btn-toggle>
+            <br />
+            <br />
+            <v-select @change="onSelectQuantity(product.id)" outlined v-model="selected" :items="quantityArray" >
+            </v-select>
             <br />
             <br />
             <router-link style="color:#55555!important" to="#">View Size Guide</router-link>
@@ -65,7 +69,7 @@
         block
         class="white--text"
         color="grey accent-4"
-        v-if="!isAddedBtn" @click="addToCart(product.id)">
+        v-if="!isAddedBtn" @click="addToCart(thisProduct.id, thisProduct.quantity, thisProduct.size)">
         {{ addToCartLabel }}
       </v-btn>
       <v-btn
@@ -120,16 +124,41 @@ export default {
     },
   },
 
+  mounted () {
+    this.thisProduct["id"] = this.product.id
+    for (let i = 1; i <= 20; i++) {
+      this.quantityArray.push(i);
+    }
+  },
+
   methods: {
     addToCart (id, quantity, size) {
+      alert(this.thisProduct.id + " " + this.thisProduct.quantity + " " + this.thisProduct.size)
       this.$store.commit('addToCart', {id, quantity, size});
     },
     removeFromCart (id) {
       this.$store.commit('removeFromCart', id);
-    }
+    },
+    sendSize(id, size) {
+      // this.$store.commit('cartProductSize', {id,size});
+      this.thisProduct["size"] = size
+    },
+    onSelectQuantity (id) {
+      // let data = {
+      //   id: id,
+      //   quantity: this.selected
+      // }
+      // this.$store.commit('cartQuantity', data);
+      this.thisProduct["quantity"] = this.selected
+    },
   },
 
   data: () => ({
+    thisProduct: {
+      'id' : 0,
+      'quantity' : 1,
+      'size' : 39
+    },
     breadcrumbs: [
       {
         text: "HOME",
@@ -154,6 +183,9 @@ export default {
     ],
     addToCartLabel: 'Add to cart',
     removeFromCartLabel: 'Remove from cart',
+    quantityArray: [],
+    selected: 1,
+    selectedSize: 39
   })
 };
 </script>
