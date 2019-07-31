@@ -29,7 +29,7 @@
             <v-stepper-content step="1">
               <v-card
                 flat
-                style="text-align:left"
+                style="text-align:left;margin-bottom: 0!important;"
                 class="mb-12"
                 color="grey lighten-1"
                 height="450px"
@@ -41,6 +41,7 @@
                       <th class="text-center">Unit Price</th>
                       <th class="text-center">Qty</th>
                       <th class="text-center">Subtotal</th>
+                      <th class="text-center">Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -92,18 +93,53 @@
                         </v-layout>
                       </td>
                       <td class="text-center">RM {{ product.price }}</td>
+
+                      <td class="text-center">
+                        <v-btn @click="decrement" small icon>
+                          <v-icon>clear</v-icon>
+                        </v-btn>
+                      </td>
                     </tr>
                   </tbody>
                 </v-simple-table>
               </v-card>
 
-              <v-btn color="primary" @click="e1 = 2">Proceed to checkout</v-btn>
+              <v-divider style="margin-bottom:20px"></v-divider>
 
-              <v-btn text>Continue Shopping</v-btn>
+              <v-layout ml-5 align-center justify-space-between row fill-height>
+                <v-flex xs8>
+                  <v-layout ma-2>
+                    <v-btn color="primary" @click="e1 = 2">Proceed to checkout</v-btn>
+                    <v-btn text>Continue Shopping</v-btn>
+                  </v-layout>
+                </v-flex>
+                <v-flex xs4>
+
+                  <v-layout justify-end column fill-height style="margin-left: 170px;">
+                    <v-flex xs2>
+                      <v-subheader style="margin-left:20px">
+                        Subtotal
+                        <span style="margin-left:30px;margin-right:10px">RM 123</span>
+                      </v-subheader>
+                    </v-flex>
+                    <v-flex xs2>
+                      <v-subheader>
+                        Grand Total
+                        <span style="margin-left:30px;margin-right:10px">RM 456</span>
+                      </v-subheader>
+                    </v-flex>
+                  </v-layout>
+                </v-flex>
+              </v-layout>
             </v-stepper-content>
 
             <v-stepper-content step="2">
-              <v-card class="mb-12" color="grey lighten-1" height="200px"></v-card>
+              <v-card class="mb-12" color="grey lighten-1" height="200px">
+
+<script type="application/javascript">paypal.Buttons().render('body');</script>
+
+
+              </v-card>
 
               <v-btn color="primary" @click="e1 = 3">Checkout</v-btn>
 
@@ -123,6 +159,12 @@
 
 <script>
 export default {
+    data: {
+  	paypal: {
+      sandbox: 'AWi18rxt26-hrueMoPZ0tpGEOJnNT4QkiMQst9pYgaQNAfS1FLFxkxQuiaqRBj1vV5PmgHX_jA_c1ncL',
+      production: 'AVZhosFzrnZ5Mf3tiOxAD0M6NHv8pcB2IFNHAfp_h69mmbd-LElFYkJUSII3Y0FPbm7S7lxBuqWImLbl'
+    }
+  },
   data() {
     return {
       e1: 0,
