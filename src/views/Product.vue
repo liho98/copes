@@ -103,9 +103,6 @@
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-expansion-panels>
-
-
-
           </v-card-text>
         </v-card>
       </v-flex>

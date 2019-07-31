@@ -19,241 +19,243 @@
           </v-card-text>
         </v-card>
       </v-flex>
-
-      <v-flex xs4>
-        <v-card flat>
-          <v-card-text class="px-0">
-            <v-layout mb-5>
-              <v-subheader style="padding: 20px;padding-top:30px;">F I L T E R</v-subheader>
-            </v-layout>
-            <v-layout ma-4 justify-center style="text-align:left">
-              <v-expansion-panels accordion>
-                <v-expansion-panel>
-                  <v-expansion-panel-header>Categories</v-expansion-panel-header>
-                  <v-expansion-panel-content style="padding:20px">
-                    <v-list flat subheader>
-                      <v-list-item-group v-model="settings" multiple active-class>
-                        <v-list-item>
-                          <template v-slot:default="{ active }">
-                            <v-list-item-action>
-                              <v-checkbox v-model="active"></v-checkbox>
-                            </v-list-item-action>
-
-                            <v-list-item-content>
-                              <v-list-item-title>Male</v-list-item-title>
-                            </v-list-item-content>
-                          </template>
-                        </v-list-item>
-
-                        <v-list-item>
-                          <template v-slot:default="{ active }">
-                            <v-list-item-action>
-                              <v-checkbox v-model="active"></v-checkbox>
-                            </v-list-item-action>
-
-                            <v-list-item-content>
-                              <v-list-item-title>Female</v-list-item-title>
-                            </v-list-item-content>
-                          </template>
-                        </v-list-item>
-
-                        <v-list-item>
-                          <template v-slot:default="{ active }">
-                            <v-list-item-action>
-                              <v-checkbox v-model="active"></v-checkbox>
-                            </v-list-item-action>
-
-                            <v-list-item-content>
-                              <v-list-item-title>Kids</v-list-item-title>
-                            </v-list-item-content>
-                          </template>
-                        </v-list-item>
-                      </v-list-item-group>
-                    </v-list>
-                  </v-expansion-panel-content>
-                </v-expansion-panel>
-
-                <v-expansion-panel>
-                  <v-expansion-panel-header>Color</v-expansion-panel-header>
-                  <v-expansion-panel-content style="padding:20px">
-                    <div class="d-flex justify-center">
-                      <v-color-picker></v-color-picker>
-                    </div>
-                  </v-expansion-panel-content>
-                </v-expansion-panel>
-                <v-expansion-panel style="padding: 0;margin: 0;">
-                  <v-expansion-panel-header>Price</v-expansion-panel-header>
-                  <v-expansion-panel-content style="padding: 0!important;margin: 0;">
-                    <v-card style="padding: 0;margin: 0;" flat color="transparent">
-                      <v-card-text style="padding: 0;margin: 0;">
-                        <v-layout>
-                          <v-flex class="px-4">
-                            <v-range-slider
-                              v-model="range"
-                              :max="max"
-                              :min="min"
-                              hide-details
-                              class="align-center"
-                            >
-                              <template v-slot:prepend>
-                                <v-subheader>RM</v-subheader>
-
-                                <v-text-field
-                                  v-model="range[0]"
-                                  class="mt-0 pt-0"
-                                  hide-details
-                                  single-line
-                                  type="number"
-                                  style="width: 60px"
-                                ></v-text-field>
-                              </template>
-                              <template v-slot:append>
-                                <v-subheader>RM</v-subheader>
-                                <v-text-field
-                                  v-model="range[1]"
-                                  class="mt-0 pt-0"
-                                  hide-details
-                                  single-line
-                                  type="number"
-                                  style="width: 60px"
-                                ></v-text-field>
-                              </template>
-                            </v-range-slider>
-                          </v-flex>
-                        </v-layout>
-                      </v-card-text>
-                    </v-card>
-                  </v-expansion-panel-content>
-                </v-expansion-panel>
-                <v-expansion-panel>
-                  <v-expansion-panel-header>Brands</v-expansion-panel-header>
-                  <v-expansion-panel-content style="padding:20px">
-                    <v-list flat subheader>
-                      <v-list-item-group v-model="settings" multiple active-class>
-                        <v-list-item>
-                          <template v-slot:default="{ active }">
-                            <v-list-item-action>
-                              <v-checkbox v-model="active"></v-checkbox>
-                            </v-list-item-action>
-
-                            <v-list-item-content>
-                              <v-list-item-title>Nike</v-list-item-title>
-                            </v-list-item-content>
-                          </template>
-                        </v-list-item>
-
-                        <v-list-item>
-                          <template v-slot:default="{ active }">
-                            <v-list-item-action>
-                              <v-checkbox v-model="active"></v-checkbox>
-                            </v-list-item-action>
-
-                            <v-list-item-content>
-                              <v-list-item-title>Adidas</v-list-item-title>
-                            </v-list-item-content>
-                          </template>
-                        </v-list-item>
-
-                        <v-list-item>
-                          <template v-slot:default="{ active }">
-                            <v-list-item-action>
-                              <v-checkbox v-model="active"></v-checkbox>
-                            </v-list-item-action>
-
-                            <v-list-item-content>
-                              <v-list-item-title>Puma</v-list-item-title>
-                            </v-list-item-content>
-                          </template>
-                        </v-list-item>
-                      </v-list-item-group>
-                    </v-list>
-                  </v-expansion-panel-content>
-                </v-expansion-panel>
-                <v-expansion-panel>
-                  <v-expansion-panel-header>Size</v-expansion-panel-header>
-                  <v-expansion-panel-content style="padding:20px">
-                    <v-list flat subheader>
-                      <v-list-item-group v-model="settings" multiple active-class>
-                        <v-list-item>
-                          <template v-slot:default="{ active }">
-                            <v-list-item-action>
-                              <v-checkbox v-model="active"></v-checkbox>
-                            </v-list-item-action>
-
-                            <v-list-item-content>
-                              <v-list-item-title>30 - 35</v-list-item-title>
-                            </v-list-item-content>
-                          </template>
-                        </v-list-item>
-
-                        <v-list-item>
-                          <template v-slot:default="{ active }">
-                            <v-list-item-action>
-                              <v-checkbox v-model="active"></v-checkbox>
-                            </v-list-item-action>
-
-                            <v-list-item-content>
-                              <v-list-item-title>36 - 40</v-list-item-title>
-                            </v-list-item-content>
-                          </template>
-                        </v-list-item>
-
-                        <v-list-item>
-                          <template v-slot:default="{ active }">
-                            <v-list-item-action>
-                              <v-checkbox v-model="active"></v-checkbox>
-                            </v-list-item-action>
-
-                            <v-list-item-content>
-                              <v-list-item-title>41 - 50</v-list-item-title>
-                            </v-list-item-content>
-                          </template>
-                        </v-list-item>
-                      </v-list-item-group>
-                    </v-list>
-                  </v-expansion-panel-content>
-                </v-expansion-panel>
-              </v-expansion-panels>
-            </v-layout>
-          </v-card-text>
-        </v-card>
-      </v-flex>
-      <v-flex xs8>
-        <v-card flat>
-          <v-card-text>
-            <v-subheader>Shoes</v-subheader>
-            <v-container fluid grid-list-sm>
-              <v-layout wrap>
-                <v-flex v-for="i in 6" :key="i" xs3>
-                  <router-link :to="'/product?id='+newArrivals[i-1].id">
-                  <v-layout style="margin-bottom:60px" align-center justify-center>
-                    <v-card flat height="300" width="250">
-                      <v-scale-transition>
-                        <v-img style="width:250px" :src="newArrivals[i-1].img"></v-img>
-                      </v-scale-transition>
-                    </v-card>
-                  </v-layout>
-                  <v-card style="margin-bottom:20px;text-decoration:none!important" flat>
-                    <div class="overline">{{newArrivals[i-1].title}}</div>
-                    <v-list-item-title class="overline mb-1">{{newArrivals[i-1].desc}}</v-list-item-title>
-                    <v-list-item-subtitle>RM {{newArrivals[i-1].price}}</v-list-item-subtitle>
-                  </v-card>
-                  </router-link>
-                </v-flex>
+      <v-layout justify-center>
+        <v-flex xs3>
+          <v-card flat>
+            <v-card-text class="px-5">
+              <v-layout mb-5>
+                <v-subheader style="padding: 20px;padding-top:30px;">F I L T E R</v-subheader>
               </v-layout>
-            </v-container>
+              <v-layout ma-4 justify-center style="text-align:left">
+                <v-expansion-panels accordion>
+                  <v-expansion-panel>
+                    <v-expansion-panel-header>Categories</v-expansion-panel-header>
+                    <v-expansion-panel-content style="padding:20px">
+                      <v-list flat subheader>
+                        <v-list-item-group v-model="settings" multiple active-class>
+                          <v-list-item>
+                            <template v-slot:default="{ active }">
+                              <v-list-item-action>
+                                <v-checkbox v-model="active"></v-checkbox>
+                              </v-list-item-action>
 
-            <div class="text-center">
-              <v-pagination
-                v-model="page"
-                :length="4"
-                prev-icon="mdi-menu-left"
-                next-icon="mdi-menu-right"
-              ></v-pagination>
-            </div>
-          </v-card-text>
-        </v-card>
-      </v-flex>
+                              <v-list-item-content>
+                                <v-list-item-title>Male</v-list-item-title>
+                              </v-list-item-content>
+                            </template>
+                          </v-list-item>
+
+                          <v-list-item>
+                            <template v-slot:default="{ active }">
+                              <v-list-item-action>
+                                <v-checkbox v-model="active"></v-checkbox>
+                              </v-list-item-action>
+
+                              <v-list-item-content>
+                                <v-list-item-title>Female</v-list-item-title>
+                              </v-list-item-content>
+                            </template>
+                          </v-list-item>
+
+                          <v-list-item>
+                            <template v-slot:default="{ active }">
+                              <v-list-item-action>
+                                <v-checkbox v-model="active"></v-checkbox>
+                              </v-list-item-action>
+
+                              <v-list-item-content>
+                                <v-list-item-title>Kids</v-list-item-title>
+                              </v-list-item-content>
+                            </template>
+                          </v-list-item>
+                        </v-list-item-group>
+                      </v-list>
+                    </v-expansion-panel-content>
+                  </v-expansion-panel>
+
+                  <v-expansion-panel>
+                    <v-expansion-panel-header>Color</v-expansion-panel-header>
+                    <v-expansion-panel-content style="padding:20px">
+                      <div class="d-flex justify-center">
+                        <v-color-picker></v-color-picker>
+                      </div>
+                    </v-expansion-panel-content>
+                  </v-expansion-panel>
+                  <v-expansion-panel>
+                    <v-expansion-panel-header>Price</v-expansion-panel-header>
+                    <v-expansion-panel-content style="padding: 0!important;margin: 0;">
+                      <v-card style="padding: 0;margin: 0;" flat color="transparent">
+                        <v-card-text style="padding: 0;margin: 0;">
+                          <v-layout>
+                            <v-flex class="px-4">
+                              <v-range-slider
+                                v-model="range"
+                                :max="max"
+                                :min="min"
+                                hide-details
+                                class="align-center"
+                              >
+                                <template v-slot:prepend>
+                                  <v-subheader>RM</v-subheader>
+
+                                  <v-text-field
+                                    v-model="range[0]"
+                                    class="mt-0 pt-0"
+                                    hide-details
+                                    single-line
+                                    type="number"
+                                    style="width: 60px"
+                                  ></v-text-field>
+                                </template>
+                                <template v-slot:append>
+                                  <v-subheader>RM</v-subheader>
+                                  <v-text-field
+                                    v-model="range[1]"
+                                    class="mt-0 pt-0"
+                                    hide-details
+                                    single-line
+                                    type="number"
+                                    style="width: 60px"
+                                  ></v-text-field>
+                                </template>
+                              </v-range-slider>
+                            </v-flex>
+                          </v-layout>
+                        </v-card-text>
+                      </v-card>
+                    </v-expansion-panel-content>
+                  </v-expansion-panel>
+                  <v-expansion-panel>
+                    <v-expansion-panel-header>Brands</v-expansion-panel-header>
+                    <v-expansion-panel-content style="padding:20px">
+                      <v-list flat subheader>
+                        <v-list-item-group v-model="settings" multiple active-class>
+                          <v-list-item>
+                            <template v-slot:default="{ active }">
+                              <v-list-item-action>
+                                <v-checkbox v-model="active"></v-checkbox>
+                              </v-list-item-action>
+
+                              <v-list-item-content>
+                                <v-list-item-title>Nike</v-list-item-title>
+                              </v-list-item-content>
+                            </template>
+                          </v-list-item>
+
+                          <v-list-item>
+                            <template v-slot:default="{ active }">
+                              <v-list-item-action>
+                                <v-checkbox v-model="active"></v-checkbox>
+                              </v-list-item-action>
+
+                              <v-list-item-content>
+                                <v-list-item-title>Adidas</v-list-item-title>
+                              </v-list-item-content>
+                            </template>
+                          </v-list-item>
+
+                          <v-list-item>
+                            <template v-slot:default="{ active }">
+                              <v-list-item-action>
+                                <v-checkbox v-model="active"></v-checkbox>
+                              </v-list-item-action>
+
+                              <v-list-item-content>
+                                <v-list-item-title>Puma</v-list-item-title>
+                              </v-list-item-content>
+                            </template>
+                          </v-list-item>
+                        </v-list-item-group>
+                      </v-list>
+                    </v-expansion-panel-content>
+                  </v-expansion-panel>
+                  <v-expansion-panel>
+                    <v-expansion-panel-header>Size</v-expansion-panel-header>
+                    <v-expansion-panel-content style="padding:20px">
+                      <v-list flat subheader>
+                        <v-list-item-group v-model="settings" multiple active-class>
+                          <v-list-item>
+                            <template v-slot:default="{ active }">
+                              <v-list-item-action>
+                                <v-checkbox v-model="active"></v-checkbox>
+                              </v-list-item-action>
+
+                              <v-list-item-content>
+                                <v-list-item-title>30 - 35</v-list-item-title>
+                              </v-list-item-content>
+                            </template>
+                          </v-list-item>
+
+                          <v-list-item>
+                            <template v-slot:default="{ active }">
+                              <v-list-item-action>
+                                <v-checkbox v-model="active"></v-checkbox>
+                              </v-list-item-action>
+
+                              <v-list-item-content>
+                                <v-list-item-title>36 - 40</v-list-item-title>
+                              </v-list-item-content>
+                            </template>
+                          </v-list-item>
+
+                          <v-list-item>
+                            <template v-slot:default="{ active }">
+                              <v-list-item-action>
+                                <v-checkbox v-model="active"></v-checkbox>
+                              </v-list-item-action>
+
+                              <v-list-item-content>
+                                <v-list-item-title>41 - 50</v-list-item-title>
+                              </v-list-item-content>
+                            </template>
+                          </v-list-item>
+                        </v-list-item-group>
+                      </v-list>
+                    </v-expansion-panel-content>
+                  </v-expansion-panel>
+                </v-expansion-panels>
+              </v-layout>
+            </v-card-text>
+          </v-card>
+        </v-flex>
+        <v-flex xs8>
+          <v-card flat>
+            <v-card-text>
+              <v-subheader>Shoes</v-subheader>
+              <v-container fluid grid-list-sm>
+                <v-layout wrap>
+                  <v-flex v-for="i in 6" :key="i" xs3>
+                    <router-link :to="'/product?id='+newArrivals[i-1].id">
+                      <v-layout style="margin-bottom:60px" align-center justify-center>
+                        <v-card flat height="300" width="250">
+                          <v-scale-transition>
+                            <v-img style="width:250px" :src="newArrivals[i-1].img"></v-img>
+                          </v-scale-transition>
+                        </v-card>
+                      </v-layout>
+                      <v-card style="margin-bottom:20px;text-decoration:none!important" flat>
+                        <div class="overline">{{newArrivals[i-1].title}}</div>
+                        <v-list-item-title class="overline mb-1">{{newArrivals[i-1].desc}}</v-list-item-title>
+                        <v-list-item-subtitle>RM {{newArrivals[i-1].price}}</v-list-item-subtitle>
+                      </v-card>
+                    </router-link>
+                  </v-flex>
+                </v-layout>
+              </v-container>
+
+              <div class="text-center">
+                <v-pagination
+                  color="grey"
+                  v-model="page"
+                  :length="4"
+                  prev-icon="mdi-menu-left"
+                  next-icon="mdi-menu-right"
+                ></v-pagination>
+              </div>
+            </v-card-text>
+          </v-card>
+        </v-flex>
+      </v-layout>
     </v-layout>
   </v-container>
 </template>
@@ -437,9 +439,7 @@ export default {
         price: 22
       }
     ]
-  }),
-
-
+  })
 };
 </script>
 

@@ -23,7 +23,7 @@
 
       <v-badge overlap class="mx-2" color="grey white--text" right>
         <template v-slot:badge>
-          <span>{{numProductsAdded}}</span>
+          <span v-if="numProductsAdded > 0">{{numProductsAdded}}</span>
         </template>
 
         <v-btn icon router to="/shoppingcart">
@@ -47,6 +47,10 @@ export default {
       return this.$store.getters.productsAdded.length;
     }
   },
+  data: () => ({
+    show: false,
+  }),
+  
 };
 </script>
 
