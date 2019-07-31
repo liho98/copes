@@ -36,7 +36,8 @@ export default new Router({
     {
       path: '/product',
       name: 'product',
-      component: Product
+      component: Product,
+      props: true
     },
     {
       path: '/shoppingcart',

@@ -20,7 +20,7 @@
               <v-layout ma-2 align-center justify-center>
                 <v-card flat>
                   <v-scale-transition>
-                    <v-img style="width:100%height:80%" :src="newArrivals[i-1].img"></v-img>
+                    <v-img style="width:100%height:80%" :src="product.img"></v-img>
                   </v-scale-transition>
                 </v-card>
               </v-layout>
@@ -35,7 +35,7 @@
             <v-layout ma-2 align-center justify-center>
               <v-card flat>
                 <v-scale-transition>
-                  <v-img style="width:100%height:80%" :src="newArrivals[1].img"></v-img>
+                  <v-img style="width:100%height:80%" :src="product.img"></v-img>
                 </v-scale-transition>
               </v-card>
             </v-layout>
@@ -46,14 +46,14 @@
       <v-flex style="text-align:left;" xs6>
         <v-card style="padding:20px" flat>
           <v-card-text class="px-0">
-            <h1>{{newArrivals[1].title}}</h1>
+            <h1>{{product.title}}</h1>
             <br />
-            <h3>{{newArrivals[1].desc}}</h3>
+            <h3>{{product.desc}}</h3>
             <br />
-            <span>RM {{newArrivals[1].price}}</span>
+            <span>RM {{product.price}}</span>
             <br />
             <br />
-            <v-btn-toggle v-model="toggle_exclusive" multiple>
+            <v-btn-toggle  multiple>
               <v-btn v-for="i in 7" :key="i">{{i+38}}</v-btn>
             </v-btn-toggle>
             <br />
@@ -65,15 +65,21 @@
         block
         class="white--text"
         color="grey accent-4"
-      >
-        Add to Cart
+        v-if="!isAddedBtn" @click="addToCart(product.id)">
+        {{ addToCartLabel }}
+      </v-btn>
+      <v-btn
+        block
+        class="white--text"
+        color="grey accent-4"
+        v-if="isAddedBtn" @click="removeFromCart(product.id)">
+        {{ removeFromCartLabel }}
       </v-btn>
     </v-card-actions>
 
 
 
     <v-expansion-panels
-      v-model="panel"
       multiple
     >
       <v-expansion-panel>
@@ -108,6 +114,34 @@
 </template>
 <script>
 export default {
+  name: 'products',
+  props: ['product'],
+
+  computed: {
+    isAddedBtn () {
+      return this.product.isAddedBtn;
+    },
+  },
+
+  methods: {
+    addToCart (id) {
+      let data = {
+        id: id,
+        status: true
+      }
+      this.$store.commit('addToCart', id);
+      this.$store.commit('setAddedBtn', data);
+    },
+    removeFromCart (id) {
+      let data = {
+        id: id,
+        status: false
+      }
+      this.$store.commit('removeFromCart', id);
+      this.$store.commit('setAddedBtn', data);
+    }
+  },
+
   data: () => ({
     breadcrumbs: [
       {
@@ -131,64 +165,8 @@ export default {
         href: "breadcrumbs_link_3"
       }
     ],
-    newArrivals: [
-      {
-        id: 1,
-        img:
-          "https://mintysquare.com/media/catalog/product/cache/1/small_image/450x607/0dc2d03fe217f8c83829496872af24a0/s/a/sandalias_1.jpg",
-        title: "Entrudo",
-        desc: "Camel Sandals Chama",
-        price: 22
-      },
-      {
-        id: 2,
-        img:
-          "https://mintysquare.com/media/catalog/product/cache/1/small_image/450x607/0dc2d03fe217f8c83829496872af24a0/s/a/sandalias_1.jpg",
-        title: "Entrudo",
-        desc: "Camel Toes",
-        price: 232
-      },
-      {
-        id: 3,
-        img:
-          "https://mintysquare.com/media/catalog/product/cache/1/small_image/450x607/0dc2d03fe217f8c83829496872af24a0/s/a/sandalias_1.jpg",
-        title: "Entrudo",
-        desc: "Camel Sandals Chama",
-        price: 22
-      },
-      {
-        id: 4,
-        img:
-          "https://mintysquare.com/media/catalog/product/cache/1/small_image/450x607/0dc2d03fe217f8c83829496872af24a0/s/a/sandalias_1.jpg",
-        title: "Entrudo",
-        desc: "Camel Sandals Chama",
-        price: 22
-      },
-      {
-        id: 5,
-        img:
-          "https://mintysquare.com/media/catalog/product/cache/1/small_image/450x607/0dc2d03fe217f8c83829496872af24a0/s/a/sandalias_1.jpg",
-        title: "Entrudo",
-        desc: "Camel Sandals Chama",
-        price: 22
-      },
-      {
-        id: 6,
-        img:
-          "https://mintysquare.com/media/catalog/product/cache/1/small_image/450x607/0dc2d03fe217f8c83829496872af24a0/s/a/sandalias_1.jpg",
-        title: "Entrudo",
-        desc: "Camel Sandals Chama",
-        price: 22
-      },
-      {
-        id: 7,
-        img:
-          "https://mintysquare.com/media/catalog/product/cache/1/small_image/450x607/0dc2d03fe217f8c83829496872af24a0/s/a/sandalias_1.jpg",
-        title: "Entrudo",
-        desc: "Camel Sandals Chama",
-        price: 22
-      }
-    ]
+    addToCartLabel: 'Add to cart',
+    removeFromCartLabel: 'Remove from cart',
   })
 };
 </script>

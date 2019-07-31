@@ -42,8 +42,14 @@
     <v-sheet class="my-5 mx-auto">
       <h1 class="display-1 font-weight-thin" style="text-align:center;padding-top:20px">New Arrivals</h1>
       <v-slide-group class="pa-4" mandatory show-arrows>
-        <v-slide-item v-for="n in 7" :key="n" v-slot:default="{ active, toggle }">
+        <v-slide-item v-for="product in $store.state.products" :key="product.id" v-slot:default="{ active, toggle }">
           <v-item-group>
+            <router-link
+              :to="{
+                name: 'product',
+                params: {product: product}
+                }"
+              >
             <v-card
               flat
               :color="active ? 'primary' : 'grey lighten-1'"
@@ -54,16 +60,17 @@
             >
               <v-layout align-center fill-height justify-center>
                 <v-scale-transition>
-                  <v-img height="200" :src="newArrivals[n-1].img"></v-img>
+                  <v-img height="200" :src="product.img"></v-img>
                 </v-scale-transition>
               </v-layout>
             </v-card>
 
             <v-card flat class="ma-4">
-              <div class="overline mb-4">{{newArrivals[n-1].title}}</div>
-              <v-list-item-title class="headline mb-1">{{newArrivals[n-1].desc}}</v-list-item-title>
-              <v-list-item-subtitle>{{newArrivals[n-1].price}}</v-list-item-subtitle>
+              <div class="overline mb-4">{{product.title}}</div>
+              <v-list-item-title class="headline mb-1">{{product.desc}}</v-list-item-title>
+              <v-list-item-subtitle>RM {{product.price}}</v-list-item-subtitle>
             </v-card>
+            </router-link>
           </v-item-group>
         </v-slide-item>
       </v-slide-group>
