@@ -54,52 +54,32 @@
             <br />
             <br />
             <v-btn-toggle v-model="toggle_exclusive" multiple>
-              <v-btn v-for="i in 7" :key="i">{{i+38}}</v-btn>
+              <v-btn  v-for="i in 7" :key="i">{{i+38}}</v-btn>
             </v-btn-toggle>
             <br />
             <br />
             <router-link style="color:#55555!important" to="#">View Size Guide</router-link>
 
-    <v-card-actions class="mx-0 px-0 my-5">
-      <v-btn
-        block
-        class="white--text"
-        color="grey accent-4"
-      >
-        Add to Cart
-      </v-btn>
-    </v-card-actions>
+            <v-card-actions class="mx-0 px-0 my-5">
+              <v-btn block class="white--text" color="grey accent-4" @click="cart++">Add to Cart</v-btn>
+            </v-card-actions>
 
+            <v-expansion-panels v-model="panel" multiple>
+              <v-expansion-panel>
+                <v-expansion-panel-header>Description</v-expansion-panel-header>
+                <v-expansion-panel-content class="mx-6 mb-6">Some content</v-expansion-panel-content>
+              </v-expansion-panel>
 
+              <v-expansion-panel>
+                <v-expansion-panel-header>Shipping</v-expansion-panel-header>
+                <v-expansion-panel-content class="mx-6 mb-6">Some content</v-expansion-panel-content>
+              </v-expansion-panel>
 
-    <v-expansion-panels
-      v-model="panel"
-      multiple
-    >
-      <v-expansion-panel>
-        <v-expansion-panel-header>Description</v-expansion-panel-header>
-        <v-expansion-panel-content class="mx-6 mb-6">
-          Some content
-        </v-expansion-panel-content>
-      </v-expansion-panel>
-
-      <v-expansion-panel>
-        <v-expansion-panel-header>Shipping</v-expansion-panel-header>
-        <v-expansion-panel-content class="mx-6 mb-6">
-          Some content
-        </v-expansion-panel-content>
-      </v-expansion-panel>
-
-      <v-expansion-panel>
-        <v-expansion-panel-header>Additional Information</v-expansion-panel-header>
-        <v-expansion-panel-content class="mx-6 mb-6">
-          Some content
-        </v-expansion-panel-content>
-      </v-expansion-panel>
-    </v-expansion-panels>
-
-
-
+              <v-expansion-panel>
+                <v-expansion-panel-header>Additional Information</v-expansion-panel-header>
+                <v-expansion-panel-content class="mx-6 mb-6">Some content</v-expansion-panel-content>
+              </v-expansion-panel>
+            </v-expansion-panels>
           </v-card-text>
         </v-card>
       </v-flex>
@@ -108,6 +88,7 @@
 </template>
 <script>
 export default {
+  
   data: () => ({
     breadcrumbs: [
       {
@@ -188,7 +169,9 @@ export default {
         desc: "Camel Sandals Chama",
         price: 22
       }
-    ]
+    ],
+    show: false,
+    cart: 0,
   })
 };
 </script>

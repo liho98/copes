@@ -23,7 +23,7 @@
 
       <v-badge overlap class="mx-2" color="grey white--text" right>
         <template v-slot:badge>
-          <span>6</span>
+          <span v-if="cart > 0">{{ cart }}</span>
         </template>
 
         <v-btn icon router to="/shoppingcart">
@@ -40,7 +40,12 @@
 
 <script>
 export default {
-  components: {}
+  name: 'header',
+  props: ['cart'],
+  data: () => ({
+    show: false,
+  }),
+  
 };
 </script>
 
