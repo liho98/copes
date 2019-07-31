@@ -35,12 +35,12 @@
                 height="450px"
               >
                 <v-simple-table fixed-header height="450px">
-                  <thead style="text-align:center">
+                  <thead>
                     <tr>
-                      <th class="text-left">Product</th>
-                      <th class="text-left">Unit Price</th>
-                      <th class="text-left">Qty</th>
-                      <th class="text-left">Subtotal</th>
+                      <th class="text-center">Product</th>
+                      <th class="text-center">Unit Price</th>
+                      <th class="text-center">Qty</th>
+                      <th class="text-center">Subtotal</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -77,30 +77,21 @@
                           </v-flex>
                         </v-layout>
                       </td>
-                      <td>RM {{ item.calories }}</td>
-                      <td>
-
-
-                          <v-layout justify-center>
-                            <v-flex>
-                             
-                          
-                          
-
-                          <v-btn @click="decrement" small icon>
-                            <v-icon>mdi-minus</v-icon>
-                          </v-btn>
- <span class="ma-2" v-text="qty"></span>
-                          <v-btn @click="increment" small icon>
-                            <v-icon>mdi-plus</v-icon>
-                          </v-btn>
-  </v-flex>
-                          </v-layout>
-                        
+                      <td class="text-center">RM {{ item.calories }}</td>
+                      <td class="text-center">
+                        <v-layout justify-center>
+                          <v-flex>
+                            <v-btn @click="decrement" small icon>
+                              <v-icon>mdi-minus</v-icon>
+                            </v-btn>
+                            <span class="ma-2" v-text="qty"></span>
+                            <v-btn @click="increment" small icon>
+                              <v-icon>mdi-plus</v-icon>
+                            </v-btn>
+                          </v-flex>
+                        </v-layout>
                       </td>
-                      <td>{{ item.calories }}</td>
-
-                      
+                      <td class="text-center">RM {{ item.calories }}</td>
                     </tr>
                   </tbody>
                 </v-simple-table>
@@ -112,19 +103,7 @@
             </v-stepper-content>
 
             <v-stepper-content step="2">
-              <v-card class="mb-12" color="grey lighten-1" height="200px">
-
-
-
-
-
-
-
-
-
-
-                
-              </v-card>
+              <v-card class="mb-12" color="grey lighten-1" height="200px"></v-card>
 
               <v-btn color="primary" @click="e1 = 3">Checkout</v-btn>
 
@@ -191,15 +170,15 @@ export default {
           calories: 518
         }
       ],
-      qty: 40
+      qty: 1
     };
   },
   methods: {
     decrement() {
-      this.bpm--;
+      this.qty--;
     },
     increment() {
-      this.bpm++;
+      this.qty++;
     }
   }
 };
