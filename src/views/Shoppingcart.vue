@@ -45,7 +45,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="item in desserts" :key="item.name">
+                    <tr v-for="product in $store.state.shoppingCart" :key="product.id">
                       <td>
                         <v-layout>
                           <v-flex xs6>
@@ -78,7 +78,7 @@
                           </v-flex>
                         </v-layout>
                       </td>
-                      <td class="text-center">RM {{ item.calories }}</td>
+                      <td class="text-center">RM {{ product.price }}</td>
                       <td class="text-center">
                         <v-layout justify-center>
                           <v-flex>
@@ -92,7 +92,7 @@
                           </v-flex>
                         </v-layout>
                       </td>
-                      <td class="text-center">RM {{ item.calories }}</td>
+                      <td class="text-center">RM {{ product.price }}</td>
 
                       <td class="text-center">
                         <v-btn @click="decrement" small icon>
@@ -323,8 +323,6 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
-
 export default {
   data() {
     return {

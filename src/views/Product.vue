@@ -108,6 +108,24 @@
 </template>
 <script>
 export default {
+  name: 'products',
+  props: ['product'],
+
+  computed: {
+    isAddedBtn () {
+      return this.product.isAddedBtn;
+    },
+  },
+
+  methods: {
+    addToCart (id, quantity, size) {
+      this.$store.commit('addToCart', {id, quantity, size});
+    },
+    removeFromCart (id) {
+      this.$store.commit('removeFromCart', id);
+    }
+  },
+
   data: () => ({
     breadcrumbs: [
       {
