@@ -121,21 +121,11 @@ export default {
   },
 
   methods: {
-    addToCart (id) {
-      let data = {
-        id: id,
-        status: true
-      }
-      this.$store.commit('addToCart', id);
-      this.$store.commit('setAddedBtn', data);
+    addToCart (id, quantity, size) {
+      this.$store.commit('addToCart', {id, quantity, size});
     },
     removeFromCart (id) {
-      let data = {
-        id: id,
-        status: false
-      }
       this.$store.commit('removeFromCart', id);
-      this.$store.commit('setAddedBtn', data);
     }
   },
 

@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { uuid } from 'vue-uuid';
 
 Vue.use(Vuex)
 
@@ -91,38 +92,37 @@ const state = {
         quantity: 1
     }
     ],
+    shoppingCart: [{}],
   }
 
 const getters = {
     evenOrOdd: state => state.count % 2 === 0 ? 'even' : 'odd',
     productsAdded: state => {
-      return state.products.filter(el => {
-        return el.isAddedToCart;
-      });
+      return state.shoppingCart.count
     },
   }
 
 const mutations = {
-    addToCart: (state, id) => {
-        state.products.forEach(el => {
-            if (id === el.id) {
-            el.isAddedToCart = true;
-            }
-        });
+    addToCart: (state, {id, quantity, size}) => {
+        var obj = {}
+        obj["id"] = uuid.v1()
+        obj["productId"] = id
+        obj["quantity"] = quantity
+        obj["size"] = size
+        state.shoppingCart.push(obj)
         },
     setAddedBtn: (state, data) => {
-    state.products.forEach(el => {
-        if (data.id === el.id) {
-        el.isAddedBtn = data.status;
-        }
-    });
+        state.products.forEach(el => {
+            if (data.id === el.id) {
+            el.isAddedBtn = data.status;
+            }
+        });
     },
     removeFromCart: (state, id) => {
-    state.products.forEach(el => {
-        if (id === el.id) {
-        el.isAddedToCart = false;
-        }
-    });
+        var filtered = state.shoppingCart.filter(function(value){
+            return value["id"] != id
+        })
+        state.shoppingCart = filtered
     }
 }
 
