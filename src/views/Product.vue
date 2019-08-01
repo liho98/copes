@@ -119,19 +119,32 @@
             </v-card-actions>
 
             <v-expansion-panels multiple :value="[0]">
-              <v-expansion-panel>
+              <v-expansion-panel disabled style="color: black">
                 <v-expansion-panel-header>Description</v-expansion-panel-header>
                 <v-expansion-panel-content class="mx-6 mb-6">{{ product.longDesc }}</v-expansion-panel-content>
               </v-expansion-panel>
 
               <v-expansion-panel>
                 <v-expansion-panel-header>Shipping</v-expansion-panel-header>
-                <v-expansion-panel-content class="mx-6 mb-6">Some content</v-expansion-panel-content>
+                <v-expansion-panel-content class="mx-6 mb-6">Free standard shipping and 30-day free returns.
+                  <ul>
+                    <li>Standard / Arrives 2-4 Business Days</li>
+                    <li>Two-Day / Arrives 2-3 Business Days</li>
+                    <li>Next-Day / Arrives 1-2 Business Days</li>
+                  </ul> </v-expansion-panel-content>
               </v-expansion-panel>
 
               <v-expansion-panel>
                 <v-expansion-panel-header>Additional Information</v-expansion-panel-header>
-                <v-expansion-panel-content class="mx-6 mb-6">Some content</v-expansion-panel-content>
+                <v-expansion-panel-content class="mx-6 mb-6">
+                  <ul>
+                    <li>Regular fit is close to the body, offering a semi-fitted feel that follows the shape of the body</li>
+                    <li>51% polyester / 49% recycled polyester mock eyelet</li>
+                    <li>Climacool ventilation</li>
+                    <li>Product color: Legend Ink</li>
+                    <li>Product code: EK2854</li>
+                    
+                  </ul></v-expansion-panel-content>
               </v-expansion-panel>
             </v-expansion-panels>
           </v-card-text>
@@ -140,6 +153,16 @@
     </v-layout>
   </v-container>
 </template>
+<style>
+  ul li::before {
+  content: "\2022";
+  color: black;
+  font-weight: bold;
+  display: inline-block; 
+  width: 1em;
+  margin-left: -1em;
+}
+</style>
 <script>
 export default {
   name: "products",
