@@ -3,7 +3,29 @@
     <v-layout style="height:100%" wrap>
       <v-flex xs12>
         <div class="wrap-login100">
-          <form class="login100-form validate-form">
+          <v-dialog v-model="dialog" width="370" style="height:300px" origin persistent>
+            <v-progress-linear absolute indeterminate top style="z-index: 2;" color="primary"></v-progress-linear>
+            <v-layout justify-center>
+              <v-card width="370" style="height:300px">
+                <v-container fluid>
+                  <v-layout column>
+                    <v-flex xs12>
+                      <div style="height: 300px;">
+                        <v-layout align-center justify-center column fill-height>
+                          <v-icon class="ma-10 mt-0" color="green" size="50">check_circle</v-icon>
+                          <v-subheader
+                            style="font-size:15px"
+                          >Your account have been created successfully.</v-subheader>
+                        </v-layout>
+                      </div>
+                    </v-flex>
+                  </v-layout>
+                </v-container>
+              </v-card>
+            </v-layout>
+          </v-dialog>
+
+          <span class="login100-form validate-form">
             <span class="login100-form-title p-b-34">Account Sign Up</span>
 
             <div
@@ -29,115 +51,39 @@
             </div>
 
             <div class="container-login100-form-btn">
-              <button class="login100-form-btn">Sign up</button>
+              <button
+                :disabled="dialog"
+                :loading="dialog"
+                @click="dialog = true"
+                class="login100-form-btn"
+              >Sign up</button>
             </div>
 
             <div class="w-full text-center">
               <router-link to="/login" class="txt3">Login</router-link>
             </div>
-          </form>
+          </span>
 
           <div class="login100-more" style="background-image: url('/signup.jpg');"></div>
         </div>
       </v-flex>
     </v-layout>
-
-    <!-- <v-card
-    class="mx-auto"
-    style="width: 100%;padding: 30px;text-align: left;"
-  >
-    <v-card-title class="title font-weight-regular justify-space-between">
-      <span>{{ currentTitle }}</span>
-      <v-avatar
-        color="primary lighten-2"
-        class="subheading white--text"
-        size="24"
-        v-text="step"
-      ></v-avatar>
-    </v-card-title>
-
-    <v-window v-model="step">
-      <v-window-item :value="1">
-        <v-card-text>
-          <v-text-field
-            label="Email"
-          ></v-text-field>
-          <span class="caption grey--text text--darken-1">
-            This is the email you will use to login to your Vuetify account
-          </span>
-        </v-card-text>
-      </v-window-item>
-
-      <v-window-item :value="2">
-        <v-card-text>
-          <v-text-field
-            label="Password"
-            type="password"
-          ></v-text-field>
-          <v-text-field
-            label="Confirm Password"
-            type="password"
-          ></v-text-field>
-          <span class="caption grey--text text--darken-1">
-            Please enter a password for your account
-          </span>
-        </v-card-text>
-      </v-window-item>
-
-      <v-window-item :value="3">
-        <div class="pa-4 text-center">
-          <v-img
-            class="mb-4"
-            contain
-            height="128"
-            src="https://cdn.vuetifyjs.com/images/logos/v.svg"
-          ></v-img>
-          <h3 class="title font-weight-light mb-2">Welcome to Vuetify</h3>
-          <span class="caption grey--text">Thanks for signing up!</span>
-        </div>
-      </v-window-item>
-    </v-window>
-
-    <v-divider style="margin-top: 15px;margin-bottom: 25px;"></v-divider>
-
-    <v-card-actions>
-      <v-btn
-        :disabled="step === 1"
-        text
-        @click="step--"
-      >
-        Back
-      </v-btn>
-      <v-spacer></v-spacer>
-      <v-btn
-        :disabled="step === 3"
-        color="primary"
-        depressed
-        @click="step++"
-      >
-        Next
-      </v-btn>
-    </v-card-actions>
-    </v-card>-->
   </v-container>
 </template>
 
 <script>
 export default {
-  data: () => ({
-    step: 1
-  }),
+  data() {
+    return {
+      dialog: false
+    };
+  },
 
-  computed: {
-    currentTitle() {
-      switch (this.step) {
-        case 1:
-          return "Sign-up";
-        case 2:
-          return "Create a password";
-        default:
-          return "Account created";
-      }
+  watch: {
+    dialog(val) {
+      if (!val) return;
+
+      setTimeout(() => (this.dialog = false), 4000);
     }
   }
 };
@@ -157,8 +103,6 @@ export default {
 }
 .input100 {
   padding: 0 25px;
-}
-a {
 }
 .txt2,
 .txt3 {

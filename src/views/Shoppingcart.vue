@@ -1,16 +1,6 @@
 <template>
   <v-container grid-list-md text-center>
     <v-layout wrap>
-      <!-- <v-flex xs12>
-        <v-card>
-          <v-card-text class="px-0">
-            <v-layout justify-center>
-              <v-subheader style="font-size:20px;">Shopping Cart</v-subheader>
-            </v-layout>
-          </v-card-text>
-        </v-card>
-      </v-flex>-->
-
       <v-flex xs12>
         <v-stepper v-model="e1">
           <v-stepper-header>
@@ -35,11 +25,9 @@
                 height="450px"
               >
                 <v-card v-if="$store.state.shoppingCart.length < 1" height="450px">
-                  <v-card-text class="px-0">
-                    <v-layout justify-center>
-                      <v-subheader style="font-size:20px;">Nothing in cart!</v-subheader>
-                    </v-layout>
-                  </v-card-text>
+                  <v-layout justify-center align-center column fill-height>
+                    <v-subheader style="font-size:20px;">Shopping Cart Is Empty</v-subheader>
+                  </v-layout>
                 </v-card>
                 <v-simple-table v-else fixed-header height="450px">
                   <thead>
@@ -78,7 +66,9 @@
                                 class="overline"
                                 style="font-size:20px!important;margin-top:40px"
                               >{{ shoppingProductGet(product.productId).title }}</div>
-                              <v-list-item-title class="overline mb-1 mt-5">{{ shoppingProductGet(product.productId).desc }}</v-list-item-title>
+                              <v-list-item-title
+                                class="overline mb-1 mt-5"
+                              >{{ shoppingProductGet(product.productId).desc }}</v-list-item-title>
 
                               <v-list-item-title class="overline mb-1">{{product.size}}</v-list-item-title>
                             </v-card>
@@ -99,7 +89,9 @@
                           </v-flex>
                         </v-layout>
                       </td>
-                      <td class="text-center">RM {{ shoppingProductGet(product.productId).price * product.quantity}}</td>
+                      <td
+                        class="text-center"
+                      >RM {{ shoppingProductGet(product.productId).price * product.quantity}}</td>
 
                       <td class="text-center">
                         <v-btn @click="removeFromCart(product.id)" small icon>
@@ -140,33 +132,38 @@
                     <v-card>
                       <v-card-text>
                         <v-form>
-                          <v-layout mb-2 justify-start>
+                          <v-layout mb-0 justify-start>
                             <v-subheader style="font-size:18px">Billing Address</v-subheader>
                           </v-layout>
 
-                          <v-layout ma-7 mb-0 wrap>
+                          <v-layout ma-7 mt-5 mb-0 wrap>
                             <v-flex xs6>
-                              <v-text-field label="First Name" outlined></v-text-field>
+                              <v-text-field clearable label="First Name" outlined></v-text-field>
                             </v-flex>
 
                             <v-flex xs6>
-                              <v-text-field label="Last Name" outlined></v-text-field>
+                              <v-text-field clearable label="Last Name" outlined></v-text-field>
                             </v-flex>
 
                             <v-flex xs12>
-                              <v-text-field label="Email Address" outlined></v-text-field>
+                              <v-text-field clearable label="Email Address" outlined></v-text-field>
                             </v-flex>
 
                             <v-flex xs12>
-                              <v-text-field label="Address" outlined></v-text-field>
+                              <v-text-field clearable label="Address" outlined></v-text-field>
                             </v-flex>
 
                             <v-flex xs6>
-                              <v-text-field label="City" outlined></v-text-field>
+                              <v-text-field clearable label="City" outlined></v-text-field>
                             </v-flex>
 
                             <v-flex xs6>
-                              <v-text-field label="Zip / Postal Code" outlined></v-text-field>
+                              <v-text-field
+                                clearable
+                                counter="5"
+                                label="Zip / Postal Code"
+                                outlined
+                              ></v-text-field>
                             </v-flex>
 
                             <v-flex xs6>
@@ -182,10 +179,10 @@
                             </v-flex>
 
                             <v-flex xs6>
-                              <v-text-field label="Telephone" outlined></v-text-field>
+                              <v-text-field clearable counter="10" label="Telephone" outlined></v-text-field>
                             </v-flex>
                             <v-flex class="my-0" xs12>
-                              <v-checkbox 
+                              <v-checkbox
                                 v-model="selected"
                                 style="margin-top:0"
                                 color="blue"
@@ -213,7 +210,11 @@
                               style="border:1px solid rgba(0,0,0,0.3);padding:20px;border-radius:5px;margin:20px;"
                               xs5
                             >
-                              <v-btn flat color="#FAFAFA" style="width:100%;height:100%;text-align:center;">
+                              <v-btn
+                                flat
+                                color="#FAFAFA"
+                                style="width:100%;height:100%;text-align:center;"
+                              >
                                 <v-layout column fill-height>
                                   <v-flex xs12>
                                     <v-icon>fas fa-exchange-alt</v-icon>
@@ -224,6 +225,23 @@
                                 </v-layout>
                               </v-btn>
                             </v-flex>
+
+                            <v-flex class="ml-7 my-0" xs12>
+                              <v-checkbox style="margin-top:0" color="blue">
+                                <template v-slot:label>
+                                  I agree to the&nbsp;
+                                  <a
+                                    href="#"
+                                    @click.stop.prevent="dialog = true"
+                                  >Terms of Service</a>
+                                  &nbsp;and&nbsp;
+                                  <a
+                                    href="#"
+                                    @click.stop.prevent="dialog = true"
+                                  >Privacy Policy</a>
+                                </template>
+                              </v-checkbox>
+                            </v-flex>
                           </v-layout>
                         </v-form>
                       </v-card-text>
@@ -233,9 +251,9 @@
                   <v-flex xs4>
                     <v-card>
                       <v-card-text class="px-0">
-                          <v-layout mb-2 mx-3 justify-start>
-                            <v-subheader style="font-size:18px">Review your order</v-subheader>
-                          </v-layout>
+                        <v-layout mb-2 mx-3 justify-start>
+                          <v-subheader style="font-size:18px">Review your order</v-subheader>
+                        </v-layout>
 
                         <v-simple-table class="ml-4 mr-4" fixed-header>
                           <thead>
@@ -252,8 +270,13 @@
                                   style="margin-top:10px;margin-bottom:10px;text-decoration:none!important;background-color:rgba(0,0,0,0)"
                                   flat
                                 >
-                                  <div class="overline" style="font-size:13px!important;">{{ shoppingProductGet(item.productId).title }}</div>
-                                  <v-list-item-title class="overline mb-1 mt-2">{{ shoppingProductGet(item.productId).desc }}</v-list-item-title>
+                                  <div
+                                    class="overline"
+                                    style="font-size:13px!important;"
+                                  >{{ shoppingProductGet(item.productId).title }}</div>
+                                  <v-list-item-title
+                                    class="overline mb-1 mt-2"
+                                  >{{ shoppingProductGet(item.productId).desc }}</v-list-item-title>
 
                                   <v-list-item-title class="overline mb-1">Size: {{item.size}}</v-list-item-title>
                                 </v-card>
@@ -313,12 +336,12 @@
             </v-stepper-content>
 
             <v-stepper-content step="3">
-<v-layout mb-5 justify-center>
-                <v-subheader style="font-size:20px;font-weight:300">
-                  Your order has been placed successfully.
-
-                </v-subheader>
-</v-layout>
+              <v-layout mb-5 align-center justify-center column fill-height>
+                <v-icon class="ma-5" color="green" size="30">check_circle</v-icon>
+                <v-subheader
+                  style="font-size:20px;font-weight:300;margin-bottom:15px"
+                >Your order has been placed successfully.</v-subheader>
+              </v-layout>
 
               <v-btn color="primary" @click="e1 = 3">Continue Shopping</v-btn>
             </v-stepper-content>
@@ -330,19 +353,18 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 export default {
   mounted() {
     this.$store.state.shoppingCart.forEach(el => {
-        this.subtotal += (this.shoppingProductGet(el.productId).price * el.quantity)
-        this.grandtotal = this.subtotal
-        })
+      this.subtotal +=
+        this.shoppingProductGet(el.productId).price * el.quantity;
+      this.grandtotal = this.subtotal;
+    });
   },
 
   computed: {
-    ...mapGetters([
-      'shoppingProductGet'
-    ])
+    ...mapGetters(["shoppingProductGet"])
   },
 
   data() {
@@ -354,32 +376,33 @@ export default {
   },
   methods: {
     decrement(product) {
-      if(product.quantity>1){
+      if (product.quantity > 1) {
         let data = {
           id: product.id,
           quantity: product.quantity--
-        }
-        this.resubtotal()
-        this.$store.commit('cartQuantity', data);
+        };
+        this.resubtotal();
+        this.$store.commit("cartQuantity", data);
       }
     },
     increment(product) {
       let data = {
         id: product.id,
         quantity: product.quantity++
-      }
-      this.resubtotal()
-      this.$store.commit('cartQuantity', data);
+      };
+      this.resubtotal();
+      this.$store.commit("cartQuantity", data);
     },
-    removeFromCart (id) {
-      this.$store.commit('removeFromCart', id);
+    removeFromCart(id) {
+      this.$store.commit("removeFromCart", id);
     },
-    resubtotal(){
-      this.subtotal = 0
+    resubtotal() {
+      this.subtotal = 0;
       this.$store.state.shoppingCart.forEach(el => {
-        this.subtotal += (this.shoppingProductGet(el.productId).price * el.quantity)
-        this.grandtotal = this.subtotal
-        })
+        this.subtotal +=
+          this.shoppingProductGet(el.productId).price * el.quantity;
+        this.grandtotal = this.subtotal;
+      });
     }
   }
 };
