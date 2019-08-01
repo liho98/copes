@@ -49,6 +49,7 @@
                 name: 'product',
                 params: {product: product}
                 }"
+                @click.native="scrollToTop"
               >
             <v-card
               flat
@@ -173,6 +174,11 @@ export default {
         return u.isNewArrival
       })
     }
+  },
+  methods: { 
+      scrollToTop() {
+          window.scrollTo(0,0);
+      }
   }
 };
 </script>

@@ -54,13 +54,15 @@
             <br />
             <br />
             <v-layout row wrap align-content-center>
-              <v-flex md8>
+              <v-flex sm9
+                grow-shrink-0>
                 <h5>Size: </h5>
                 <v-btn-toggle mandatory>
                   <v-btn v-for="i in 7" :key="i" v-on:click.native="sendSize(product.id, i+38)" :value="i+38" >{{i+38}}</v-btn>
                 </v-btn-toggle>
               </v-flex>
-              <v-flex md3>
+              <v-flex sm3
+                grow-shrink-0>
                 <h5>Quantity: </h5>
                 <v-select  @change="onSelectQuantity()" solo v-model="selected" :items="quantityArray" >
                 </v-select>
