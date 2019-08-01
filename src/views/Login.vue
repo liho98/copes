@@ -37,7 +37,7 @@
               class="wrap-input100 rs1-wrap-input100 validate-input m-b-20"
               data-validate="Required email"
             >
-              <input id="first-name" class="input100" type="text" name="email" placeholder="Email" />
+              <input id="email" class="input100" type="text" name="email" placeholder="Email" />
               <span class="focus-input100"></span>
             </div>
             <div

@@ -116,7 +116,7 @@
                     <td rowspan="2" colspan="3" class="text-left">
                       <v-btn color="primary" @click="e1 = 2">Proceed to checkout</v-btn>
 
-                      <v-btn text>Continue Shopping</v-btn>
+                      <v-btn v-on:click.native="goBack" text>Continue Shopping</v-btn>
                     </td>
 
                     <td class="text-center">Subtotal</td>

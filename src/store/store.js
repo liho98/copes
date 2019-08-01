@@ -207,6 +207,7 @@ const state = {
     },
     ],
     shoppingCart: [],
+    user:[{email: 'tanlh-wa16@student.tarc.edu.my',pass: 123456}]
   }
 
 const getters = {
