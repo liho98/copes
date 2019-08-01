@@ -20,8 +20,6 @@
                           <v-subheader
                             style="font-size:15px"
                           >Li Ho Tan</v-subheader>
-
-
                         </v-layout>
                       </div>
                     </v-flex>

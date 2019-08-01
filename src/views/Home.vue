@@ -16,62 +16,59 @@
       </v-carousel-item>
     </v-carousel>
 
-    <!-- <v-container fluid grid-list-sm>
-        <v-layout wrap>
-          <v-flex v-for="n in 3" :key="n" xs12 md4>
-            <v-item v-slot:default="{ active, toggle }">
-              <v-card :color="active ? 'primary' : ''" dark @click="toggle">
-                <v-scroll-y-transition>
-                  <div>
-                    <v-img height="100" :src="carouselImages[n-1]">
-                      <div
-                        style="z-index:-1;position:absolute;width:100%;height:100%;background-color:black;opacity:0.6"
-                      ></div>
-                      <v-layout align-center fill-height justify-center>
-                        <div class="display-3">{{categories[n-1]}}</div>
-                      </v-layout>
-                    </v-img>
-                  </div>
-                </v-scroll-y-transition>
-              </v-card>
-            </v-item>
-          </v-flex>
-        </v-layout>
-    </v-container>-->
-
     <v-sheet class="my-5 mx-auto">
       <h1 class="display-1 font-weight-thin" style="text-align:center;padding-top:20px">New Arrivals</h1>
       <v-slide-group class="pa-4" mandatory show-arrows>
-        <v-slide-item v-for="product in newArrivals" :key="product.id" v-slot:default="{ active, toggle }">
+        <v-slide-item
+          v-for="product in newArrivals"
+          :key="product.id"
+          v-slot:default="{ active, toggle }"
+        >
           <v-item-group>
             <router-link
               :to="{
                 name: 'product',
                 params: {product: product}
                 }"
-                @click.native="scrollToTop"
-              >
-            <v-card
-              flat
-              :color="active ? 'primary' : 'grey lighten-1'"
-              class="ma-4"
-              height="200"
-              width="308"
-              @click="toggle"
+              @click.native="scrollToTop"
             >
-              <v-layout align-center fill-height justify-center>
-                <v-scale-transition>
-                  <v-img height="200" :src="product.img"></v-img>
-                </v-scale-transition>
-              </v-layout>
-            </v-card>
+              <v-card
+                flat
+                :color="active ? 'primary' : 'grey lighten-1'"
+                class="ma-4"
+                height="200"
+                width="308"
+                @click="toggle"
+              >
+                <v-layout align-center fill-height justify-center>
+                  <v-scale-transition>
+                    <v-img height="200" :src="product.img"></v-img>
+                  </v-scale-transition>
+                </v-layout>
+              </v-card>
 
-            <v-card flat class="ma-4">
-              <div class="overline mb-4">{{product.title}}</div>
-              <v-list-item-title class="headline mb-1">{{product.desc}}</v-list-item-title>
-              <v-list-item-subtitle>RM {{product.price}}</v-list-item-subtitle>
-            </v-card>
+              <v-card flat class="ma-4">
+                    <v-layout @click.prevent="null" align-start row fill-height style="float:right;margin:0;">
+                      <v-rating
+                        length="1"
+                        empty-icon="mdi-heart-outline"
+                        full-icon="mdi-heart"
+                        color="red"
+                        background-color="red"
+                        clearable
+                        dense
+                      ></v-rating>
+                    </v-layout>
+
+                <div class="overline mb-4">{{product.title}}</div>
+                <v-list-item-title class="headline mb-1">{{product.desc}}</v-list-item-title>
+                <v-list-item-subtitle>RM {{product.price}}</v-list-item-subtitle>
+              </v-card>
             </router-link>
+
+
+
+
           </v-item-group>
         </v-slide-item>
       </v-slide-group>
@@ -169,16 +166,16 @@ export default {
     };
   },
   computed: {
-    newArrivals : function() {
+    newArrivals: function() {
       return this.$store.state.products.filter(function(u) {
-        return u.isNewArrival
-      })
+        return u.isNewArrival;
+      });
     }
   },
-  methods: { 
-      scrollToTop() {
-          window.scrollTo(0,0);
-      }
+  methods: {
+    scrollToTop() {
+      window.scrollTo(0, 0);
+    }
   }
 };
 </script>

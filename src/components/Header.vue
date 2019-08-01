@@ -42,6 +42,10 @@
           ></v-img>
         </v-avatar>Li Ho Tan
       </v-chip>
+
+
+
+
     </v-toolbar>
   </nav>
 </template>
@@ -56,13 +60,25 @@ export default {
     }
   },
   data: () => ({
-    isLogin: false,
+    isLogin: true,
     drawer: null,
     items: [
       { title: "Home", icon: "dashboard" },
       { title: "About", icon: "question_answer" }
-    ]
-  })
+    ],
+    loader: null,
+    loading: false
+  }),
+  watch: {
+    loader() {
+      const l = this.loader;
+      this[l] = !this[l];
+
+      setTimeout(() => (this[l] = false), 3000);
+
+      this.loader = null;
+    }
+  }
 };
 </script>
 
@@ -70,4 +86,5 @@ export default {
 button {
   font-family: Poppins-Regular;
 }
+
 </style>

@@ -1,6 +1,6 @@
 <template>
   <v-container grid-list-md text-center>
-    <v-snackbar v-model="snackbar" absolute top right color="success">
+    <v-snackbar v-model="snackbar" :timeout="timeout" absolute top right color="success">
       <span>Added 1 item to shopping cart</span>
       <v-icon dark>check_circle</v-icon>
     </v-snackbar>
@@ -60,6 +60,20 @@
               </v-flex>
               <v-flex style="text-align:right;font-family:Poppins;font-size:25px" md3>
                 <span>RM {{product.price}}</span>
+                <br/>
+                <br/>
+                <v-layout ma-0 pa-0 align-start justify-end>
+                  <v-rating
+                    dense
+                    length="1"
+                    empty-icon="mdi-heart-outline"
+                    full-icon="mdi-heart"
+                    color="red"
+                    background-color="red"
+                    clearable
+                  ></v-rating>
+                </v-layout>
+
               </v-flex>
             </v-layout>
             <br />
@@ -146,6 +160,7 @@ export default {
 
   methods: {
     addToCart(id, quantity, size) {
+      this.snackbar = true;
       alert(
         this.thisProduct.id +
           " " +
@@ -170,10 +185,6 @@ export default {
       // this.$store.commit('cartQuantity', data);
       this.thisProduct["quantity"] = this.selected;
     },
-
-    submit() {
-      this.snackbar = true;
-    }
   },
 
   data: () => ({
@@ -208,8 +219,10 @@ export default {
     removeFromCartLabel: "Remove from cart",
     quantityArray: [],
     selected: 1,
-    selectedSize: 39
+    selectedSize: 39,
+    snackbar: false,
+    timeout: 4000,
+
   })
 };
 </script>
-

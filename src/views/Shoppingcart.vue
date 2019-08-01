@@ -138,28 +138,31 @@
 
                           <v-layout ma-7 mt-5 mb-0 wrap>
                             <v-flex xs6>
-                              <v-text-field clearable label="First Name" outlined></v-text-field>
+                              <v-text-field :rules="[rules.required]" clearable hint="eg. Li Ho" label="First Name" outlined></v-text-field>
                             </v-flex>
 
                             <v-flex xs6>
-                              <v-text-field clearable label="Last Name" outlined></v-text-field>
+                              <v-text-field :rules="[rules.required]" clearable hint="eg. Tan" label="Last Name" outlined></v-text-field>
                             </v-flex>
 
                             <v-flex xs12>
-                              <v-text-field clearable label="Email Address" outlined></v-text-field>
+                              <v-text-field v-model="email" :rules="[rules.required, rules.email]" clearable hint="eg. tanlh-wa16@example.com" label="Email Address" outlined></v-text-field>
                             </v-flex>
 
                             <v-flex xs12>
-                              <v-text-field clearable label="Address" outlined></v-text-field>
+                              <v-text-field :rules="[rules.required]" clearable hint="eg. Jalan Sungai Buluh, Taman Sejahtera" label="Address" outlined></v-text-field>
                             </v-flex>
 
                             <v-flex xs6>
-                              <v-text-field clearable label="City" outlined></v-text-field>
+                              <v-text-field :rules="[rules.required]" clearable hint="eg. Klang" label="City" outlined></v-text-field>
                             </v-flex>
 
                             <v-flex xs6>
                               <v-text-field
+                              :rules="[rules.required]"
                                 clearable
+                                hint="eg. 53300"
+                                maxlength="5"
                                 counter="5"
                                 label="Zip / Postal Code"
                                 outlined
@@ -171,7 +174,7 @@
                                 outlined
                                 ref="country"
                                 v-model="country"
-                                :rules="[() => !!country || 'This field is required']"
+                                :rules="[() => !!country || 'Required']"
                                 :items="countries"
                                 label="Country"
                                 required
@@ -179,7 +182,7 @@
                             </v-flex>
 
                             <v-flex xs6>
-                              <v-text-field clearable counter="10" label="Telephone" outlined></v-text-field>
+                              <v-text-field :rules="[rules.required]" clearable hint="eg. 012 850 0711" maxlength="12" counter="12" label="Telephone" outlined></v-text-field>
                             </v-flex>
                             <v-flex class="my-0" xs12>
                               <v-checkbox
@@ -231,11 +234,13 @@
                                 <template v-slot:label>
                                   I agree to the&nbsp;
                                   <a
+                                    style="font-family: inherit;"
                                     href="#"
                                     @click.stop.prevent="dialog = true"
                                   >Terms of Service</a>
                                   &nbsp;and&nbsp;
                                   <a
+                                    style="font-family: inherit;"
                                     href="#"
                                     @click.stop.prevent="dialog = true"
                                   >Privacy Policy</a>
@@ -371,7 +376,18 @@ export default {
     return {
       e1: 0,
       subtotal: 0,
-      grandtotal: 0
+      grandtotal: 0,
+        countries:['Malaysia'],
+        email: '',
+        rules: {
+          required: value => !!value || 'Required.',
+          counter: value => value.length <= 20 || 'Max 20 characters',
+          email: value => {
+            const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            return pattern.test(value) || 'Invalid e-mail.'
+          },
+        },
+
     };
   },
   methods: {

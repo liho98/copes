@@ -225,6 +225,10 @@
               <v-container fluid grid-list-sm>
                 <v-layout wrap>
                   <v-flex v-for="i in 6" :key="i" xs3>
+
+
+
+
                     <router-link :to="'/product?id='+newArrivals[i-1].id">
                       <v-layout style="margin-bottom:60px" align-center justify-center>
                         <v-card flat height="300" width="250">
@@ -233,12 +237,28 @@
                           </v-scale-transition>
                         </v-card>
                       </v-layout>
-                      <v-card style="margin-bottom:20px;text-decoration:none!important" flat>
+                      <v-card class="mx-5" style="text-align:left;margin-bottom:20px;text-decoration:none!important" flat>
+                        
+                      <v-layout @click.prevent="null" align-end row fill-height style="float:right;">
+                        <v-rating
+                          length="1"
+                          empty-icon="mdi-heart-outline"
+                          full-icon="mdi-heart"
+                          color="red"
+                          background-color="red"
+                          clearable
+                          dense
+                        ></v-rating>
+                      </v-layout>
+                        
                         <div class="overline">{{newArrivals[i-1].title}}</div>
                         <v-list-item-title class="overline mb-1">{{newArrivals[i-1].desc}}</v-list-item-title>
                         <v-list-item-subtitle>RM {{newArrivals[i-1].price}}</v-list-item-subtitle>
                       </v-card>
                     </router-link>
+
+
+
                   </v-flex>
                 </v-layout>
               </v-container>
