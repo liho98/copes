@@ -262,7 +262,7 @@
                     <v-card>
                       <v-card-text class="px-0">
                         <v-layout mb-2 mx-3 justify-start>
-                          <v-subheader style="font-size:18px">Review your order</v-subheader>
+                          <v-subheader style="font-size:18px">Review Your Order</v-subheader>
                         </v-layout>
 
                         <v-simple-table class="ml-4 mr-4" fixed-header>
