@@ -35,7 +35,7 @@
         <v-icon>account_circle</v-icon>
       </v-btn>
 
-      <v-chip class="mx-4" v-if="isLogin" pill v-on="on">
+      <v-chip class="mx-4" v-if="isLogin" pill v-on="on" router to="/login">
         <v-avatar left>
           <v-img
             src="https://cdn2us.denofgeek.com/sites/denofgeekus/files/styles/main_wide/public/2019/07/emma-watson-didn_t-always-look-like-this.jpg?itok=zj2E_HAN"
