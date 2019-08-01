@@ -60,9 +60,9 @@
                               <v-card-text class="px-0">
                                 <v-layout px-5 my-0 justify-center>
                                   <v-img
-                                    src="https://mintysquare.com/media/catalog/product/cache/1/small_image/450x607/0dc2d03fe217f8c83829496872af24a0/s/a/sandalias_1.jpg"
+                                    :src="shoppingProductGet(product.productId).img"
                                     width="10"
-                                    height="170"
+                                    height="130"
                                   ></v-img>
                                 </v-layout>
                               </v-card-text>
