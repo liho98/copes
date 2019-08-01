@@ -146,13 +146,6 @@ export default {
 
   methods: {
     addToCart(id, quantity, size) {
-      alert(
-        this.thisProduct.id +
-          " " +
-          this.thisProduct.quantity +
-          " " +
-          this.thisProduct.size
-      );
       this.$store.commit("addToCart", { id, quantity, size });
     },
     removeFromCart(id) {

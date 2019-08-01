@@ -269,7 +269,10 @@ const mutations = {
             el.size = data.size;
             }
         });
-    }
+    },
+    clearCart: (state) => {
+        state.shoppingCart = []
+    },
 }
 
 export default new Vuex.Store({
