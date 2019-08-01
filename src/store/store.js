@@ -15,10 +15,8 @@ const state = {
         desc: "Ultraboost 19",
         longDesc: 'Ultraboost reinvented. These running shoes reboot key performance technologies to give you a confident and energy-filled run. The knit upper has a second-skin fit and is built with motion-weave technology for adaptive stretch and support. Dual-density cushioning delivers medial support and an energised ride.',
         price: 850,
-        size: 0,
         isNewArrival: true,
         isAddedToCart: false,
-        isAddedBtn: false,
         quantity: 1
     },
     {
@@ -27,11 +25,10 @@ const state = {
         "https://mintysquare.com/media/catalog/product/cache/1/small_image/450x607/0dc2d03fe217f8c83829496872af24a0/s/a/sandalias_1.jpg",
         title: "Entrudo",
         desc: "Camel Toes",
+        longDesc: 'Ultraboost reinvented. These running shoes reboot key performance technologies to give you a confident and energy-filled run. The knit upper has a second-skin fit and is built with motion-weave technology for adaptive stretch and support. Dual-density cushioning delivers medial support and an energised ride.',
         price: 232,
-        size: 0,
-        isNewArrival: false,
+        isNewArrival: true,
         isAddedToCart: false,
-        isAddedBtn: false,
         quantity: 1
     },
     {
@@ -40,11 +37,10 @@ const state = {
         "https://mintysquare.com/media/catalog/product/cache/1/small_image/450x607/0dc2d03fe217f8c83829496872af24a0/s/a/sandalias_1.jpg",
         title: "Entrudo",
         desc: "Camel Sandals Chama",
+        longDesc: 'Ultraboost reinvented. These running shoes reboot key performance technologies to give you a confident and energy-filled run. The knit upper has a second-skin fit and is built with motion-weave technology for adaptive stretch and support. Dual-density cushioning delivers medial support and an energised ride.',
         price: 22,
-        size: 0,
         isNewArrival: false,
         isAddedToCart: false,
-        isAddedBtn: false,
         quantity: 1
     },
     {
@@ -53,11 +49,10 @@ const state = {
         "https://mintysquare.com/media/catalog/product/cache/1/small_image/450x607/0dc2d03fe217f8c83829496872af24a0/s/a/sandalias_1.jpg",
         title: "Entrudo",
         desc: "Camel Sandals Chama",
+        longDesc: 'Ultraboost reinvented. These running shoes reboot key performance technologies to give you a confident and energy-filled run. The knit upper has a second-skin fit and is built with motion-weave technology for adaptive stretch and support. Dual-density cushioning delivers medial support and an energised ride.',
         price: 22,
-        size: 0,
         isNewArrival: true,
         isAddedToCart: false,
-        isAddedBtn: false,
         quantity: 1
     },
     {
@@ -66,11 +61,10 @@ const state = {
         "https://mintysquare.com/media/catalog/product/cache/1/small_image/450x607/0dc2d03fe217f8c83829496872af24a0/s/a/sandalias_1.jpg",
         title: "Entrudo",
         desc: "Camel Sandals Chama",
+        longDesc: 'Ultraboost reinvented. These running shoes reboot key performance technologies to give you a confident and energy-filled run. The knit upper has a second-skin fit and is built with motion-weave technology for adaptive stretch and support. Dual-density cushioning delivers medial support and an energised ride.',
         price: 22,
-        size: 0,
         isNewArrival: false,
         isAddedToCart: false,
-        isAddedBtn: false,
         quantity: 1
     },
     {
@@ -79,11 +73,10 @@ const state = {
         "https://mintysquare.com/media/catalog/product/cache/1/small_image/450x607/0dc2d03fe217f8c83829496872af24a0/s/a/sandalias_1.jpg",
         title: "Entrudo",
         desc: "Camel Sandals Chama",
+        longDesc: 'Ultraboost reinvented. These running shoes reboot key performance technologies to give you a confident and energy-filled run. The knit upper has a second-skin fit and is built with motion-weave technology for adaptive stretch and support. Dual-density cushioning delivers medial support and an energised ride.',
         price: 22,
-        size: 0,
         isNewArrival: true,
         isAddedToCart: false,
-        isAddedBtn: false,
         quantity: 1
     },
     {
@@ -92,11 +85,10 @@ const state = {
         "https://mintysquare.com/media/catalog/product/cache/1/small_image/450x607/0dc2d03fe217f8c83829496872af24a0/s/a/sandalias_1.jpg",
         title: "Entrudo",
         desc: "Camel Sandals Chama",
+        longDesc: 'Ultraboost reinvented. These running shoes reboot key performance technologies to give you a confident and energy-filled run. The knit upper has a second-skin fit and is built with motion-weave technology for adaptive stretch and support. Dual-density cushioning delivers medial support and an energised ride.',
         price: 22,
-        size: 0,
         isNewArrival: true,
         isAddedToCart: false,
-        isAddedBtn: false,
         quantity: 1
     }
     ],
