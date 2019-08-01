@@ -207,7 +207,7 @@ const state = {
     },
     ],
     shoppingCart: [],
-    user:[{email: 'tanlh-wa16@student.tarc.edu.my',pass: 123456}]
+    user:[{email: 'tanlh-wa16@student.tarc.edu.my',pass: 12345678, isLogin: false,}]
   }
 
 const getters = {
@@ -273,6 +273,12 @@ const mutations = {
     },
     clearCart: (state) => {
         state.shoppingCart = []
+    },
+    login: (state,email) => {
+        state.user[0].isLogin = true;
+    },
+    signout: (state,email) => {
+        state.user[0].isLogin = false;
     },
 }
 

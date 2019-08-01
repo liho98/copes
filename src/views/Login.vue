@@ -49,10 +49,11 @@
             </div>
 
             <div class="container-login100-form-btn">
+              
               <button
                 :disabled="dialog"
                 :loading="dialog"
-                @click="dialog = true"
+                @click="login('email')"
                 class="login100-form-btn"
               >Sign In</button>
             </div>
@@ -89,6 +90,13 @@ export default {
 
       setTimeout(() => (this.dialog = false), 4000);
     }
+  },
+
+  methods: {
+    login(email) {
+      this.dialog = true;
+      this.$store.commit("login", email);
+    },
   }
 };
 </script>

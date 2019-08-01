@@ -31,21 +31,54 @@
         </v-btn>
       </v-badge>
 
-      <v-btn v-if="!isLogin" class="mx-2" icon router to="/login">
+      <v-btn v-show="!$store.state.user[0].isLogin" class="mx-2" icon router to="/login">
         <v-icon>account_circle</v-icon>
       </v-btn>
 
-      <v-chip class="mx-4" v-if="isLogin" pill v-on="on">
-        <v-avatar left>
-          <v-img
-            src="https://cdn2us.denofgeek.com/sites/denofgeekus/files/styles/main_wide/public/2019/07/emma-watson-didn_t-always-look-like-this.jpg?itok=zj2E_HAN"
-          ></v-img>
-        </v-avatar>Li Ho Tan
-      </v-chip>
+      <div class="text-center">
+        <v-menu
+          nudge-width="100"
+          nudge-right="10"
+          nudge-bottom="28"
+          offset-overflow
+          offset-y
+          offset-x
+        >
+          <template v-slot:activator="{ on }">
+            <v-chip class="mx-4" v-show="$store.state.user[0].isLogin" pill v-on="on">
+              <v-avatar left>
+                <v-img src="https://cdn.vuetifyjs.com/images/john.jpg"></v-img>
+              </v-avatar>Li Ho Tan
+            </v-chip>
+          </template>
 
+          <v-card>
+            <v-list>
+              <v-list-item>
+                <v-list-item-avatar>
+                  <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John" />
+                </v-list-item-avatar>
 
+                <v-list-item-content>
+                  <v-list-item-title>Li Ho Tan</v-list-item-title>
+                  <v-list-item-subtitle>vip</v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list>
 
-
+            <v-divider></v-divider>
+            <v-layout text-center justify-center>
+              <v-flex xs12>
+                <v-card>
+                  <v-card-text>
+                    <v-btn outlined @click="signout('email')">Sign out</v-btn>
+                  </v-card-text>
+                </v-card>
+              </v-flex>
+            </v-layout>
+          </v-card>
+        </v-menu>
+      </div>
     </v-toolbar>
   </nav>
 </template>
@@ -60,14 +93,14 @@ export default {
     }
   },
   data: () => ({
-    isLogin: true,
     drawer: null,
     items: [
       { title: "Home", icon: "dashboard" },
       { title: "About", icon: "question_answer" }
     ],
     loader: null,
-    loading: false
+    loading: false,
+    menu: false
   }),
   watch: {
     loader() {
@@ -78,6 +111,11 @@ export default {
 
       this.loader = null;
     }
+  },
+  methods: {
+    signout(email) {
+      this.$store.commit("signout", email);
+    }
   }
 };
 </script>
@@ -86,5 +124,4 @@ export default {
 button {
   font-family: Poppins-Regular;
 }
-
 </style>

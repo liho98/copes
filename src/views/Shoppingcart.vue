@@ -49,9 +49,8 @@
                                 <v-layout px-5 my-0 justify-center>
                                   <v-img
                                     :src="shoppingProductGet(product.productId).img"
-                                    width="140"
-                                    height="200"
-                                    contain
+                                    width="10"
+                                    height="130"
                                   ></v-img>
                                 </v-layout>
                               </v-card-text>
@@ -68,14 +67,10 @@
                                 style="font-size:20px!important;margin-top:40px"
                               >{{ shoppingProductGet(product.productId).title }}</div>
                               <v-list-item-title
-                                class="overline mb-1 mt-3"
-                                style="font-size:14px!important"
+                                class="overline mb-1 mt-5"
                               >{{ shoppingProductGet(product.productId).desc }}</v-list-item-title>
 
-                              <v-list-item-title 
-                                class="overline mb-1 mt-6"
-                                style="font-size:13px!important"
-                                >Size: {{product.size}}</v-list-item-title>
+                              <v-list-item-title class="overline mb-1">{{product.size}}</v-list-item-title>
                             </v-card>
                           </v-flex>
                         </v-layout>
@@ -189,7 +184,7 @@
                             <v-flex xs6>
                               <v-text-field :rules="[rules.required]" clearable hint="eg. 012 850 0711" maxlength="12" counter="12" label="Telephone" outlined></v-text-field>
                             </v-flex>
-                            <v-flex class="my-0" xs12>
+                            <v-flex class="my-0 mt-4" xs6>
                               <v-checkbox
                                 v-model="selected"
                                 style="margin-top:0"
@@ -197,6 +192,11 @@
                                 label="Ship to this address"
                               ></v-checkbox>
                             </v-flex>
+                            <v-layout class="my-0 mt-4" justify-end>
+                              <v-btn outlined color="rgba(0,0,0,0.5)" class="mx-5" @click="clear">clear</v-btn>
+                            </v-layout>
+
+
                           </v-layout>
 
                           <v-layout mb-2 justify-start>
