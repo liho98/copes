@@ -161,13 +161,6 @@ export default {
   methods: {
     addToCart(id, quantity, size) {
       this.snackbar = true;
-      alert(
-        this.thisProduct.id +
-          " " +
-          this.thisProduct.quantity +
-          " " +
-          this.thisProduct.size
-      );
       this.$store.commit("addToCart", { id, quantity, size });
     },
     removeFromCart(id) {

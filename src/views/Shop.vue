@@ -32,7 +32,7 @@
                     <v-expansion-panel-header>Categories</v-expansion-panel-header>
                     <v-expansion-panel-content style="padding:20px">
                       <v-list flat subheader>
-                        <v-list-item-group v-model="settings" multiple active-class>
+                        <v-list-item-group multiple active-class>
                           <v-list-item>
                             <template v-slot:default="{ active }">
                               <v-list-item-action>
@@ -129,7 +129,7 @@
                     <v-expansion-panel-header>Brands</v-expansion-panel-header>
                     <v-expansion-panel-content style="padding:20px">
                       <v-list flat subheader>
-                        <v-list-item-group v-model="settings" multiple active-class>
+                        <v-list-item-group multiple active-class>
                           <v-list-item>
                             <template v-slot:default="{ active }">
                               <v-list-item-action>
@@ -173,7 +173,7 @@
                     <v-expansion-panel-header>Size</v-expansion-panel-header>
                     <v-expansion-panel-content style="padding:20px">
                       <v-list flat subheader>
-                        <v-list-item-group v-model="settings" multiple active-class>
+                        <v-list-item-group multiple active-class>
                           <v-list-item>
                             <template v-slot:default="{ active }">
                               <v-list-item-action>
@@ -224,20 +224,22 @@
               <v-subheader>Shoes</v-subheader>
               <v-container fluid grid-list-sm>
                 <v-layout wrap>
-                  <v-flex v-for="i in 6" :key="i" xs3>
-
-
-
-
-                    <router-link :to="'/product?id='+newArrivals[i-1].id">
+                  <v-flex v-for="product in $store.state.products" :key="product.id" xs3>
+                    <router-link
+                    :to="{
+                      name: 'product',
+                      params: {product: product}
+                      }"
+                      @click.native="scrollToTop"
+                    >
                       <v-layout style="margin-bottom:60px" align-center justify-center>
-                        <v-card flat height="300" width="250">
+                        <v-card flat height="150" width="250">
                           <v-scale-transition>
-                            <v-img style="width:250px" :src="newArrivals[i-1].img"></v-img>
+                            <v-img style="width:250px" :src="product.img"></v-img>
                           </v-scale-transition>
                         </v-card>
                       </v-layout>
-                      <v-card class="mx-5" style="text-align:left;margin-bottom:20px;text-decoration:none!important" flat>
+                      <v-card class="mx-5" style="text-align:left;margin-bottom:20px;text-decoration:none!important;margin-top:0" flat>
                         
                       <v-layout @click.prevent="null" align-end row fill-height style="float:right;">
                         <v-rating
@@ -250,10 +252,9 @@
                           dense
                         ></v-rating>
                       </v-layout>
-                        
-                        <div class="overline">{{newArrivals[i-1].title}}</div>
-                        <v-list-item-title class="overline mb-1">{{newArrivals[i-1].desc}}</v-list-item-title>
-                        <v-list-item-subtitle>RM {{newArrivals[i-1].price}}</v-list-item-subtitle>
+                        <div class="overline">{{product.title}}</div>
+                        <v-list-item-title class="overline mb-1">{{product.desc}}</v-list-item-title>
+                        <v-list-item-subtitle>RM {{product.price}}</v-list-item-subtitle>
                       </v-card>
                     </router-link>
 
@@ -401,65 +402,12 @@ export default {
     max: 2000,
     slider: 40,
     range: [-20, 300],
-    newArrivals: [
-      {
-        id: 1,
-        img:
-          "https://mintysquare.com/media/catalog/product/cache/1/small_image/450x607/0dc2d03fe217f8c83829496872af24a0/s/a/sandalias_1.jpg",
-        title: "Entrudo",
-        desc: "Camel Sandals Chama",
-        price: 22
-      },
-      {
-        id: 2,
-        img:
-          "https://mintysquare.com/media/catalog/product/cache/1/small_image/450x607/0dc2d03fe217f8c83829496872af24a0/s/a/sandalias_1.jpg",
-        title: "Entrudo",
-        desc: "Camel Toes",
-        price: 232
-      },
-      {
-        id: 3,
-        img:
-          "https://mintysquare.com/media/catalog/product/cache/1/small_image/450x607/0dc2d03fe217f8c83829496872af24a0/s/a/sandalias_1.jpg",
-        title: "Entrudo",
-        desc: "Camel Sandals Chama",
-        price: 22
-      },
-      {
-        id: 4,
-        img:
-          "https://mintysquare.com/media/catalog/product/cache/1/small_image/450x607/0dc2d03fe217f8c83829496872af24a0/s/a/sandalias_1.jpg",
-        title: "Entrudo",
-        desc: "Camel Sandals Chama",
-        price: 22
-      },
-      {
-        id: 5,
-        img:
-          "https://mintysquare.com/media/catalog/product/cache/1/small_image/450x607/0dc2d03fe217f8c83829496872af24a0/s/a/sandalias_1.jpg",
-        title: "Entrudo",
-        desc: "Camel Sandals Chama",
-        price: 22
-      },
-      {
-        id: 6,
-        img:
-          "https://mintysquare.com/media/catalog/product/cache/1/small_image/450x607/0dc2d03fe217f8c83829496872af24a0/s/a/sandalias_1.jpg",
-        title: "Entrudo",
-        desc: "Camel Sandals Chama",
-        price: 22
-      },
-      {
-        id: 7,
-        img:
-          "https://mintysquare.com/media/catalog/product/cache/1/small_image/450x607/0dc2d03fe217f8c83829496872af24a0/s/a/sandalias_1.jpg",
-        title: "Entrudo",
-        desc: "Camel Sandals Chama",
-        price: 22
+  }),
+  methods: { 
+      scrollToTop() {
+          window.scrollTo(0,0);
       }
-    ]
-  })
+  }
 };
 </script>
 

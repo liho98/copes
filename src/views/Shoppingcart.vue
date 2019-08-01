@@ -334,7 +334,7 @@
               </v-container>
 
               <v-layout ma-5 align-center justify-start row fill-height>
-                <v-btn color="primary" @click="e1 = 3">Checkout</v-btn>
+                <v-btn color="primary" @click="e1 = 3" v-on:click.native="checkout" >Checkout</v-btn>
 
                 <v-btn text @click="e1 = 1">Back</v-btn>
               </v-layout>
@@ -347,8 +347,8 @@
                   style="font-size:20px;font-weight:300;margin-bottom:15px"
                 >Your order has been placed successfully.</v-subheader>
               </v-layout>
-
-              <v-btn color="primary" @click="e1 = 3">Continue Shopping</v-btn>
+              
+              <v-btn color="primary" @click="e1 = 3" v-on:click.native="goBack" >Continue Shopping</v-btn>
             </v-stepper-content>
           </v-stepper-items>
         </v-stepper>
@@ -419,6 +419,12 @@ export default {
           this.shoppingProductGet(el.productId).price * el.quantity;
         this.grandtotal = this.subtotal;
       });
+    },
+    goBack() {
+      this.$router.push({ name: 'home'})
+    },
+    checkout() {
+      this.$store.commit('clearCart')
     }
   }
 };
