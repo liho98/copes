@@ -152,7 +152,8 @@ export default {
   },
 
   mounted() {
-    this.thisProduct["id"] = this.product.id;
+    this.thisProduct["id"] = this.product.id
+    this.breadcrumbs[3]["text"] = this.product.title + " " + this.product.desc
     for (let i = 1; i <= 20; i++) {
       this.quantityArray.push(i);
     }

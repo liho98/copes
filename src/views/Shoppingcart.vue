@@ -397,8 +397,8 @@ export default {
           id: product.id,
           quantity: product.quantity--
         };
-        this.resubtotal();
         this.$store.commit("cartQuantity", data);
+        this.resubtotal();
       }
     },
     increment(product) {
@@ -406,19 +406,20 @@ export default {
         id: product.id,
         quantity: product.quantity++
       };
-      this.resubtotal();
       this.$store.commit("cartQuantity", data);
+      this.resubtotal();
     },
     removeFromCart(id) {
-      this.$store.commit("removeFromCart", id);
+        this.$store.commit("removeFromCart", id);
+        this.resubtotal();
     },
     resubtotal() {
       this.subtotal = 0;
       this.$store.state.shoppingCart.forEach(el => {
         this.subtotal +=
           this.shoppingProductGet(el.productId).price * el.quantity;
-        this.grandtotal = this.subtotal;
       });
+      this.grandtotal = this.subtotal;
     },
     goBack() {
       this.$router.push({ name: 'home'})
