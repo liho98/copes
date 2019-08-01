@@ -50,16 +50,22 @@
             <br />
             <h3>{{product.desc}}</h3>
             <br />
-            <span>RM {{product.price}}</span>
+            <h2>RM {{product.price}}</h2>
             <br />
             <br />
-            <v-btn-toggle mandatory>
-              <v-btn v-for="i in 7" :key="i" v-on:click.native="sendSize(product.id, i+38)" :value="i+38" >{{i+38}}</v-btn>
-            </v-btn-toggle>
-            <br />
-            <br />
-            <v-select @change="onSelectQuantity(product.id)" outlined v-model="selected" :items="quantityArray" >
-            </v-select>
+            <v-layout row wrap align-content-center>
+              <v-flex md8>
+                <h5>Size: </h5>
+                <v-btn-toggle mandatory>
+                  <v-btn v-for="i in 7" :key="i" v-on:click.native="sendSize(product.id, i+38)" :value="i+38" >{{i+38}}</v-btn>
+                </v-btn-toggle>
+              </v-flex>
+              <v-flex md3>
+                <h5>Quantity: </h5>
+                <v-select  @change="onSelectQuantity()" solo v-model="selected" :items="quantityArray" >
+                </v-select>
+              </v-flex>
+            </v-layout> 
             <br />
             <br />
             <router-link style="color:#55555!important" to="#">View Size Guide</router-link>
@@ -84,12 +90,12 @@
 
 
     <v-expansion-panels
-      multiple
+      multiple :value="[0]"
     >
       <v-expansion-panel>
         <v-expansion-panel-header>Description</v-expansion-panel-header>
         <v-expansion-panel-content class="mx-6 mb-6">
-          Some content
+          {{ product.longDesc }}
         </v-expansion-panel-content>
       </v-expansion-panel>
 
@@ -146,7 +152,7 @@ export default {
       // this.$store.commit('cartProductSize', {id,size});
       this.thisProduct["size"] = size
     },
-    onSelectQuantity (id) {
+    onSelectQuantity () {
       // let data = {
       //   id: id,
       //   quantity: this.selected
@@ -188,7 +194,7 @@ export default {
     removeFromCartLabel: 'Remove from cart',
     quantityArray: [],
     selected: 1,
-    selectedSize: 39
+    selectedSize: 39,
   })
 };
 </script>
