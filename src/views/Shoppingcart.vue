@@ -49,8 +49,9 @@
                                 <v-layout px-5 my-0 justify-center>
                                   <v-img
                                     :src="shoppingProductGet(product.productId).img"
-                                    width="10"
-                                    height="130"
+                                    width="140"
+                                    height="200"
+                                    contain
                                   ></v-img>
                                 </v-layout>
                               </v-card-text>
@@ -67,10 +68,14 @@
                                 style="font-size:20px!important;margin-top:40px"
                               >{{ shoppingProductGet(product.productId).title }}</div>
                               <v-list-item-title
-                                class="overline mb-1 mt-5"
+                                class="overline mb-1 mt-3"
+                                style="font-size:14px!important"
                               >{{ shoppingProductGet(product.productId).desc }}</v-list-item-title>
 
-                              <v-list-item-title class="overline mb-1">{{product.size}}</v-list-item-title>
+                              <v-list-item-title 
+                                class="overline mb-1 mt-6"
+                                style="font-size:13px!important"
+                                >Size: {{product.size}}</v-list-item-title>
                             </v-card>
                           </v-flex>
                         </v-layout>
