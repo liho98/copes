@@ -63,9 +63,10 @@
               </v-flex>
             </v-layout>
             <br />
-            <v-layout row wrap align-content-center justify-space-between>
-              <v-flex md8>
-                <h5>Size:</h5>
+            <v-layout row wrap align-content-center>
+              <v-flex sm9
+                grow-shrink-0>
+                <h5>Size: </h5>
                 <v-btn-toggle mandatory>
                   <v-btn
                     v-for="i in 7"
@@ -75,14 +76,11 @@
                   >{{i+38}}</v-btn>
                 </v-btn-toggle>
               </v-flex>
-              <v-flex md3>
-                <h5>Quantity:</h5>
-                <v-select
-                  @change="onSelectQuantity()"
-                  solo
-                  v-model="selected"
-                  :items="quantityArray"
-                ></v-select>
+              <v-flex sm3
+                grow-shrink-0>
+                <h5>Quantity: </h5>
+                <v-select  @change="onSelectQuantity()" solo v-model="selected" :items="quantityArray" >
+                </v-select>
               </v-flex>
             </v-layout>
             <router-link to="#">

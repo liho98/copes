@@ -42,13 +42,14 @@
     <v-sheet class="my-5 mx-auto">
       <h1 class="display-1 font-weight-thin" style="text-align:center;padding-top:20px">New Arrivals</h1>
       <v-slide-group class="pa-4" mandatory show-arrows>
-        <v-slide-item v-for="product in $store.state.products" :key="product.id" v-slot:default="{ active, toggle }">
+        <v-slide-item v-for="product in newArrivals" :key="product.id" v-slot:default="{ active, toggle }">
           <v-item-group>
             <router-link
               :to="{
                 name: 'product',
                 params: {product: product}
                 }"
+                @click.native="scrollToTop"
               >
             <v-card
               flat
@@ -159,58 +160,6 @@ export default {
         "19 collection",
         "Show your style"
       ],
-      categories: ["Women", "Men", "Kid"],
-      newArrivals: [
-        {
-          img:
-            "https://mintysquare.com/media/catalog/product/cache/1/small_image/450x607/0dc2d03fe217f8c83829496872af24a0/s/a/sandalias_1.jpg",
-          title: "Entrudo",
-          desc: "Camel Sandals Chama",
-          price: 22
-        },
-        {
-          img:
-            "https://mintysquare.com/media/catalog/product/cache/1/small_image/450x607/0dc2d03fe217f8c83829496872af24a0/s/a/sandalias_1.jpg",
-          title: "Entrudo",
-          desc: "Camel Toes",
-          price: 232
-        },
-        {
-          img:
-            "https://mintysquare.com/media/catalog/product/cache/1/small_image/450x607/0dc2d03fe217f8c83829496872af24a0/s/a/sandalias_1.jpg",
-          title: "Entrudo",
-          desc: "Camel Sandals Chama",
-          price: 22
-        },
-        {
-          img:
-            "https://mintysquare.com/media/catalog/product/cache/1/small_image/450x607/0dc2d03fe217f8c83829496872af24a0/s/a/sandalias_1.jpg",
-          title: "Entrudo",
-          desc: "Camel Sandals Chama",
-          price: 22
-        },
-        {
-          img:
-            "https://mintysquare.com/media/catalog/product/cache/1/small_image/450x607/0dc2d03fe217f8c83829496872af24a0/s/a/sandalias_1.jpg",
-          title: "Entrudo",
-          desc: "Camel Sandals Chama",
-          price: 22
-        },
-        {
-          img:
-            "https://mintysquare.com/media/catalog/product/cache/1/small_image/450x607/0dc2d03fe217f8c83829496872af24a0/s/a/sandalias_1.jpg",
-          title: "Entrudo",
-          desc: "Camel Sandals Chama",
-          price: 22
-        },
-        {
-          img:
-            "https://mintysquare.com/media/catalog/product/cache/1/small_image/450x607/0dc2d03fe217f8c83829496872af24a0/s/a/sandalias_1.jpg",
-          title: "Entrudo",
-          desc: "Camel Sandals Chama",
-          price: 22
-        }
-      ],
       brandImg: [
         "/brand-img/brand1.png",
         "/brand-img/brand2.png",
@@ -218,6 +167,18 @@ export default {
         "/brand-img/brand4.png"
       ]
     };
+  },
+  computed: {
+    newArrivals : function() {
+      return this.$store.state.products.filter(function(u) {
+        return u.isNewArrival
+      })
+    }
+  },
+  methods: { 
+      scrollToTop() {
+          window.scrollTo(0,0);
+      }
   }
 };
 </script>
