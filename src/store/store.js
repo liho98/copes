@@ -45,7 +45,7 @@ const state = {
         img:
         require('@/assets/prods/adidas_women/1.jpg'),
         title: "Adidas",
-        desc: "Ultraboost 19 Women\'s",
+        desc: "Ultraboost 19 Women's",
         longDesc: 'Ultraboost reinvented. These running shoes reboot key performance technologies to give you a confident and energy-filled run. The knit upper has a second-skin fit and is built with motion-weave technology for adaptive stretch and support. Dual-density cushioning delivers medial support and an energised ride.',
         price: 850,
         isNewArrival: true,
@@ -56,7 +56,7 @@ const state = {
         img:
         require('@/assets/prods/adidas_women/2.jpg'),
         title: "Adidas",
-        desc: "NMD R1 Women\'s",
+        desc: "NMD R1 Women's",
         longDesc: 'Made for urban adventures, the NMD series combines \'80s running heritage with modern materials. These shoes feature a soft, stretchy knit upper that rides on a responsive Boost midsole, delivering energy return with every stride. As a nod to cycling culture, the front midsole plug has a look that\'s inspired by street race bikes.',
         price: 750,
         isNewArrival: false,
@@ -67,7 +67,7 @@ const state = {
         img:
         require('@/assets/prods/adidas_women/3.jpg'),
         title: "Adidas",
-        desc: "Originals Continental 80 Women\'s",
+        desc: "Originals Continental 80 Women's",
         longDesc: 'The YUNG series continues with these women\'s Continental 80 trainers from adidas Originals. Straight out of adi\'s archives, this one-for-one remake brings retro vibes to your fits. With a premium leather upper in a clean new colourway, these throwback sneakers have a tonal lace up fastening and a split rubber cupsole for supreme cushioning and a flexible feel. They\'re finished up with a woven yellow stripe, adidas branding to the sidewalls and the legendary Trefoil logo to the tongue and heel.',
         price: 450,
         isNewArrival: false,
@@ -111,7 +111,7 @@ const state = {
         img:
         require('@/assets/prods/nike_women/1.jpg'),
         title: "Nike",
-        desc: "Air Max 270 Women\'s",
+        desc: "Air Max 270 Women's",
         longDesc: 'Give your footwear faves a summer refesh with these women\'s Air Max 270 trainers from Nike. Inspired by the iconic Air Max 180 and Air Max 93, these trainers are built with a breathable mesh upper in a gradient University Gold, Blue and Psychic Pink colourway. They feature a secure lace up fastening and a lightweight, 2-piece midsole with Nike\'s tallest, heel Air unit for a super comfy feel. With a grippy rubber tread, these sneakers are finished with mini Swoosh branding and Air 270 branding to the tongue and heel.',
         price: 609,
         isNewArrival: true,
@@ -122,7 +122,7 @@ const state = {
         img:
         require('@/assets/prods/nike_women/2.jpg'),
         title: "Nike",
-        desc: "Air Force 1 \'07 LV8 Women\'s",
+        desc: "Air Force 1 '07 LV8 Women's",
         longDesc: 'Evolving from the courts to the streets, step out in a retro icon with these women\'s Air Force 1 \'07 LV8 trainers from Nike. Updating the \'82 classic, these high-profile sneakers are built with a smooth leather upper in a white colourway. They feature a tonal lace up fastening and a Velcro-secured ankle strap for a supportive feel. With breathable forefoot perforations, these trainers are sat on a tonal midsole, which uses Nike\'s encapsulated Air for lightweight cushioning. They\'re finished with a grippy rubber tread and Swoosh branding to the sidewalls.',
         price: 415,
         isNewArrival: false,
@@ -133,7 +133,7 @@ const state = {
         img:
         require('@/assets/prods/nike_women/3.jpg'),
         title: "Nike",
-        desc: "Air Force 1 \'07 LV8 Women\'s",
+        desc: "Air Force 1 '07 LV8 Women's",
         longDesc: 'Get the essential \'82 look with a standout edge in these women\'s Air Force 1 \'07 LV8 trainers from Nike. In a white colourway with reflective, metallic detailing to the sidewalls and heel, these trainers are made with a leather upper to keep your feet feelin\' supported and lookin\' luxe. With perforations throughout for a cool wear and tonal lacing for a locked-in fit, these creps are sat on a foam midsole with an encapsulated Air unit to the heel for a responsive and cushioned ride. With a grippy rubber outsole for traction on the streets, these sneakers are finished with Nike Air branding to the tongue, along with the iconic Swoosh to the sidewalls.',
         price: 389,
         isNewArrival: false,
@@ -177,7 +177,7 @@ const state = {
         img:
         require('@/assets/prods/Puma_women/1.jpg'),
         title: "Puma",
-        desc: "Nova 2 Women\'s",
+        desc: "Nova 2 Women's",
         longDesc: 'Throw it back to the \'90s with these women\'s Nova 2 trainers from PUMA. Bringing a summer vibe to your \'fits, these sneakers are built with a sporty mesh upper in a white colourway. They feature premium leather overlays and a tonal lace up fastening for a snug fit. Sat on a chunky IMEVA midsole, these trainers offer lightweight, all-day cushioning, while a rubber tread keeps you gripped. Adding a pop of colour, they\'re finished with a woven heel and tongue pull in yellow with pink PUMA branding.',
         price: 469,
         isNewArrival: true,
@@ -188,7 +188,7 @@ const state = {
         img:
         require('@/assets/prods/Puma_women/2.jpg'),
         title: "Puma",
-        desc: "Storm Pulse Women\'s",
+        desc: "Storm Pulse Women's",
         longDesc: 'Step out in bold, retro style with these women\'s Storm Pulse trainers from PUMA. With a breathable textile upper, these chunky trainers come in a Wine colourway with synthetic leather overlays. They feature a tonal lace up fastening and an exaggerated CMEVA midsole for cloud-like cushioning and an ultra-comfy feel. With a grippy rubber tread, these trainers are finished with PUMA branding to the tongue and the iconic Formstrip to the sidewalls.',
         price: 469,
         isNewArrival: false,
@@ -199,7 +199,7 @@ const state = {
         img:
         require('@/assets/prods/Puma_women/3.jpg'),
         title: "Puma",
-        desc: "RS-9.8 Women\'s",
+        desc: "RS-9.8 Women's",
         longDesc: 'Retro yet futuristic, these women\'s RS-9.8 trainers from PUMA guarantee to make waves. In a white and grey colourway with hits of green and unmissable neon pink, these space-inspired sneaks are built with a durable ripstop upper with synthetic suede and leather overlays. They feature a secure lace up fastening and a chunky yet lightweight midsole that uses PUMA\'s archive Running System tech for all-day cushioning. With a grippy rubber tread, these sneaks are finished with RS-9.8 branding to the tongue and the legendary Formstrip to the sidewalls.',
         price: 439,
         isNewArrival: false,
